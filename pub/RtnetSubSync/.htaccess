@@ -1,0 +1,4 @@
+<FilesMatch "\.debug\.txt|\.errors\.txt">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

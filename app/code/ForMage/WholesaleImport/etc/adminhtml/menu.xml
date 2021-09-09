@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="ForMage_WholesaleImport::wholesale" title="Wholesale Import" module="ForMage_WholesaleImport" sortOrder="110" resource="ForMage_WholesaleImport::wholesale" parent="ForMage::base"/>
+        <add id="ForMage_WholesaleImport::list" title="Wholesales" module="ForMage_WholesaleImport" sortOrder="100" parent="ForMage_WholesaleImport::wholesale" action="wholesaleimport/wholesale/index" resource="ForMage_WholesaleImport::wholesale"/>
+        <add id="ForMage_WholesaleImport::task" title="Tasks" module="ForMage_WholesaleImport" sortOrder="100" parent="ForMage_WholesaleImport::wholesale" action="wholesaleimport/task/index" resource="ForMage_WholesaleImport::task"/>
+    </menu>
+</config>

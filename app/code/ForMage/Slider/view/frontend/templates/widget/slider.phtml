@@ -1,0 +1,40 @@
+<?php $items = $block->getSlides() ?>
+<div class="slider slick">
+    <?php foreach ($items as $item): ?>
+        <div class="slide slide-<?= $item->getId() ?>" <?= $item->getImageAsBg() ? 'style="background: url(\''. $block->getImageUrl($item) .'\')"' : ''; ?>>
+            <?php if (!$item->getImageAsBg()): ?>
+                <?php if ($item->getUrl()): ?>
+                    <a href="<?= $item->getUrl() ?>">
+                <?php endif; ?>
+                <img <?= $block->getLazy() ? 'data-' : '' ?>srcset="<?= $block->getSrcSet($item) ?>"  <?= $block->getLazy() ? 'data-lazy' : 'src'?> ="<?= $block->getImageUrl($item, 320, 1) ?>" <?= $block->getLazy() ? 'data-' : '' ?>sizes="100vw" alt="<?= $item->getName() ?>"/>
+                <?php if ($item->getUrl()): ?>
+                    </a>
+                <?php endif; ?>
+
+            <?php endif; ?>
+            <?= $block->getContent($item) ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<script type="text/x-magento-init">
+        {
+            ".slider":
+            {
+                "ForMageSlider":
+                {
+                    "slick":
+                    {
+                        "lazyLoad": "<?= (bool)$block->getLazy() ? 'ondemand' : '' ?>",
+                        "slidesToShow": <?= (int)$block->getItems() ?>,
+                        "dots": <?= $block->getDots() ? 'true' : 'false' ?>,
+                        "arrows": <?= $block->getArrows() ? 'true' : 'false' ?>,
+                        "autoplay": <?= (bool)$block->getAutoplay() ? 'true' : 'false' ?>,
+                        "infinite": <?= (bool)$block->getInfinite() ? 'true' : 'false' ?>,
+                        "autoplaySpeed": <?= $block->getAutoplaySpeed() ?: 2500 ?>,
+                        "fade": <?= (bool)$block->getFade() ? 'true' : 'false' ?>
+                    }
+                }
+            }
+        }
+</script>

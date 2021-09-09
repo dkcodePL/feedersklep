@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="ForMage_MegaMenu::megamenu" title="Mega Menu" module="ForMage_MegaMenu" sortOrder="100" resource="ForMage_MegaMenu::menu" parent="ForMage::base"/>
+        <add id="ForMage_MegaMenu::megamenu_tree" title="Menu" module="ForMage_MegaMenu" sortOrder="110" parent="ForMage_MegaMenu::megamenu" action="megamenu/menu/index" resource="ForMage_MegaMenu::menu"/>
+    </menu>
+</config>

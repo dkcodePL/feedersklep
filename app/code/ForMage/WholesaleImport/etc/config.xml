@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wholesaleimport>
+            <settings>
+                <import_images_file_dir>var/import</import_images_file_dir>
+                <import_multiple_value_separator>,</import_multiple_value_separator>
+            </settings>
+        </wholesaleimport>
+    </default>
+</config>

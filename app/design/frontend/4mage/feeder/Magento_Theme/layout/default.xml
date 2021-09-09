@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="bootstrap-wrapper"/>
+
+        <referenceBlock name="header">
+            <arguments>
+                <argument name="show_part" xsi:type="string">other</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceBlock name="skip_to_content" remove="true"/>
+        <referenceBlock name="privacy-policy-link" remove="true"/>
+        <referenceBlock name="sales-guest-form-link" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true" />
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="advanced-search-link" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        <referenceBlock name="wish-list-link-custom" remove="false"/>
+
+        <referenceBlock name="store.menu" remove="false"/>
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+
+        <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="catalog.compare.link" remove="false" />
+
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="top.storelocator.chooser" remove="true" />
+
+        <move element="top.links" destination="header-wrapper"/>
+        <move element="form.subscribe" destination="footer_5" after="-"/>
+        <move element="copyright" destination="footer_copyright"/>
+        <move element="top.storelocator.chooser" destination="top.links"/>
+
+        <referenceBlock name="authorization-link">
+            <arguments>
+                <argument name="sortOrder" xsi:type="number">300</argument>
+            </arguments>
+        </referenceBlock>
+
+
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        <referenceBlock name="store.menu">
+            <block class="Magento\Cms\Block\Block" name="main.menu">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">menu</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+
+
+        <referenceContainer name="header.panel">
+            <container htmlTag="div" htmlClass="row no-gutters">
+                <container htmlTag="div" htmlClass="col-lg-9 col-md-9 col-sm-12 delivery" name="header.panel.left">
+                    <block class="Magento\Cms\Block\Block" name="header.panel.info">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">delivery_info</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container htmlTag="div" htmlClass="col-lg-3 col-md-3 col-sm-12"  name="header.panel.right">
+                    <block class="Magento\Cms\Block\Block" name="header.panel.links">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">top_links</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="header-wrapper">
+            <container htmlTag="div" htmlClass="header-info">
+                <block class="Magento\Cms\Block\Block" name="header.wrapper.info">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">top_info</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="footer-container">
+                <container label="Footer" htmlTag="div" htmlClass="bottom-container" after="-">
+                    <container htmlTag="div" htmlClass="row no-gutters">
+                        <container name="footer_copyright" htmlTag="div" htmlClass="col-md-12"/>
+                    </container>
+                </container>
+        </referenceContainer>
+
+        <referenceContainer name="footer" htmlClass="footer">
+            <container htmlTag="div" htmlClass="top-container info" before="-">
+                <container htmlTag="div" htmlClass="row no-gutters">
+                    <container name="footer_6" label="Footer 6" htmlTag="div" htmlClass="col-lg-6 col-md-12 col-sm-12 links">
+                        <container htmlTag="div" htmlClass="row no-gutters">
+                            <container name="footer_1" label="Footer 1" htmlTag="div" htmlClass="col-lg-4 col-md-4 col-sm-12">
+                                <block class="Magento\Cms\Block\Block" name="footer.block.1">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_1</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer_2" label="Footer 2" htmlTag="div" htmlClass="col-lg-4 col-md-4 col-sm-12">
+                                <block class="Magento\Cms\Block\Block" name="footer.block.2">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_2</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer_3" label="Footer 3" htmlTag="div" htmlClass="col-lg-4 col-md-4 col-sm-12">
+                                <block class="Magento\Cms\Block\Block" name="footer.block.3">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_3</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                        </container>
+                    </container>
+                    <container name="footer_7" label="Footer 7" htmlTag="div" htmlClass="col-lg-6 col-md-12 col-sm-12 newsletter-container">
+                        <container htmlTag="div" htmlClass="row no-gutters">
+                            <container name="footer_4" label="Footer 4" htmlTag="div" htmlClass="col-lg-5 col-md-4 col-sm-12">
+                                <block class="Magento\Cms\Block\Block" name="footer.block.4">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_4</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer_5" label="Footer 5" htmlTag="div" htmlClass="col-lg-7 col-md-8 col-sm-12">
+                                <block class="Magento\Cms\Block\Block" name="footer.block.5">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_5</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                        </container>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+
+
+    </body>
+</page>

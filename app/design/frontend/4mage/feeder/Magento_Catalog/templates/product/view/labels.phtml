@@ -1,0 +1,12 @@
+<?php
+$_product = $block->getProduct();
+$_helper = $this->helper('ForMage\FeederTheme\Helper\Data');
+?>
+<div class="labels">
+<?php if ($_helper->hasSpecialPrice($_product)): ?>
+    <span class="promo label" title="<?php /* @escapeNotVerified */ echo __('Promotion') ?>"><?php /* @escapeNotVerified */ echo __('Promotion') ?></span>
+<?php endif; ?>
+    <?php if ($_helper->isNew($_product)): ?>
+    <span class="label new" title="<?php /* @escapeNotVerified */ echo __('New') ?>"><?php /* @escapeNotVerified */ echo __('New') ?></span>
+<?php endif; ?>
+</div>

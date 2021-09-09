@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+  ~  4mage Package
+  ~
+  ~  NOTICE OF LICENSE
+  ~
+  ~  This source file is subject to the 4mage.co license that is
+  ~  available through the world-wide-web at this URL:
+  ~  https://4mage.co/license-agreement/
+  ~
+  ~  DISCLAIMER
+  ~
+  ~  Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~  version in the future.
+  ~
+  ~  @category 	ForMage
+  ~  @package 	ForMage_HidePrices
+  ~  @copyright 	Copyright (c) 2020 4mage.co (https://4mage.co/)
+  ~  @license  	https://4mage.co/license-agreement/
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="ForMage_HidePrices::config" title="Hide Prices" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

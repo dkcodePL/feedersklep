@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+            <resource id="ForMage_Base::base" title="4mage" translate="title" sortOrder="100">
+                    <resource id="ForMage_MegaMenu::menu" title="Mega Menu" translate="title" sortOrder="100"/>
+            </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="ForMage_MegaMenu::config" title="4mage Menu" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

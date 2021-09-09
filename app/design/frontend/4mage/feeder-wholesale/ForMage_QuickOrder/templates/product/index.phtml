@@ -1,0 +1,250 @@
+<?php
+$_helper = $this->helper('ForMage\QuickOrder\Helper\Data');
+?>
+<div class="table-wrapper">
+    <script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function (url, blockLoader) {
+            blockLoader("<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>");
+            return url.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+        })
+    </script>
+
+
+    <table class="data table stripe" id="table" width="100%">
+        <thead>
+        <tr>
+            <th scope="col" class=""><?= __('Image') ?></th>
+            <th scope="col" class=""><?= __('SKU') ?></th>
+            <th scope="col" class=""><?= __('Name') ?></th>
+            <th scope="col" class=""><?= __('Excl. Tax') ?></th>
+            <th scope="col" class=""><?= __('Incl. Tax') ?></th>
+            <th scope="col" class=""><?= __('%') ?></th>
+            <th scope="col" class=""><?= __('Qty') ?></th>
+
+            <?php foreach ($block->getAttributesLabels() as $label):?>
+                <th scope="col" class=""><?php /* @escapeNotVerified */ echo __($label);?></th>
+            <?php endforeach;?>
+
+            <th scope="col" class=""><?= __('Actions') ?></th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <?php foreach ($block->getAttributesLabels() as $label):?>
+                <th scope="col" class=""></th>
+            <?php endforeach;?>
+            <th scope="col" class=""></th>
+        </tr>
+        </tfoot>
+        </tfoot>
+        <tbody>
+        </tbody>
+
+    </table>
+</div>
+<script>
+    require([
+        'jquery',
+        'ko',
+        'mage/url',
+        'Magento_Catalog/js/price-utils',
+        'mage/apply/main',
+        "jquery-ui-modules/spinner",
+        "jquery-ui-modules/tooltip",
+        'dataTables',
+        'Magento_Catalog/js/catalog-add-to-cart',
+        'mage/translate'
+    ], function ($, ko, urlBuilder, priceUtils, mage) {
+
+        $.widget("ui.spinner", $.ui.spinner, {
+            _uiSpinnerHtml: function() {
+                return "<div class='qty-box'></div>";
+            }
+        });
+
+
+        $.widget("ui.spinner", $.ui.spinner, {
+            _buttonHtml: function () {
+                return "" +
+                    "<span class='ui-spinner-button ui-spinner-up'>" +
+                    "<i class='ui-icon icon-angle-up'></i>" +
+                    "</span>" +
+                    "<span class='ui-spinner-button ui-spinner-down'>" +
+                    "<i class='ui-icon icon-angle-down'></i>" +
+                    "</span>";
+            }
+        });
+
+
+        var url = urlBuilder.build('/quickorder/product/datatables', {});
+        var formKey = "<?= $block->getFormKey(); ?>";
+
+        var table = $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                searching: true,
+                stateSave: true,
+                language: {
+                    url: "<?= $block->getViewFileUrl('js/datatables/pl_PL.json'); ?>"
+                },
+                ajax: {
+                    url: url,
+                    type: "POST",
+                    data: function (d) {
+                        d.account_id = "<?= /* @escapeNotVerified */ $block->getCustomerId(); ?>";
+                    }
+                },
+                drawCallback: function( settings ) {
+                    $('#table tbody').children('tr').each(function () {
+                        $(this).find("form[data-role='tocart-form']").catalogAddToCart();
+
+                        mage.apply();
+
+                        $(this).find("[data-role='spinner']").each(function () {
+                            $(this).spinner({
+                                min: 1,
+                                max: 999999,
+                                step: 1
+                            });
+                        });
+                    });
+
+
+                    $( function() {
+                        $('#table tbody').tooltip({
+                            items: "[data-img]",
+                            content: function() {
+                                var element = $( this );
+                                    return "<div style='border: 1px solid #f0f0f0' ><img class='tooltip' alt='' src='" + element.data('url') + "'></div>";
+                                }
+                        });
+                    } );
+
+                },
+                columns: [
+                    {
+                        orderable: false,
+                        searchable: false,
+                        className: "dt-body-vt",
+                        render:
+                            function (data, type, row) {
+                                var tooltip = ' <div style="z-index: 999; background:#fff; text-align: center" class="tooltip" data-img data-url="' + row.img + '" ><img style="max-width: 50px; max-height: 50px;" src="' + row.img + '" /></div>';
+                                return tooltip;
+                            }
+                    },
+                    {
+                        data: "sku",
+                        searchable: false,
+                        orderable: true,
+                    },
+                    {
+                        data: "name",
+                        searchable: false,
+                        orderable: true,
+                    },
+                    {
+                        data: "price",
+                        searchable: false,
+                        orderable: true,
+                        className: "dt-body-right",
+                        render:
+                            function (data, type, row) {
+                                return priceUtils.formatPrice(row.price, ',');
+                            }
+                    },
+                    {
+                        data: "price",
+                        searchable: false,
+                        orderable: true,
+                        className: "dt-body-right",
+                        render:
+                            function (data, type, row) {
+                                return priceUtils.formatPrice(row.price2, ',');
+                            }
+                    },
+                    {
+                        data: "tax_rate",
+                        searchable: false,
+                        orderable: false,
+                        className: "dt-body-right"
+                    },
+                    {
+                        data: "qty",
+                        searchable: false,
+                        orderable: false,
+                        className: "dt-body-left"
+                    },
+                    <?php foreach ($_helper->getProductAttributes() as $attributeCode):?>
+                        {
+                            data: "<?= /* @escapeNotVerified */ $attributeCode; ?>",
+                            searchable: false,
+                            orderable: true,
+                        },
+                    <?php endforeach;?>
+                    {
+                        orderable: false,
+                        searchable: false,
+                        className: "dt-body-vt",
+                        render:
+                            function (data, type, row) {
+                                if (!row.saleable) return '';
+                                var buttons = ' <form class="product_addtocart_form" data-role="tocart-form" data-product-sku="' + row.sku + '" action="'  + row.cartUrl.action + '" method="post">'+
+                                                               '<input type="hidden" name="form_key" value="' + formKey + '">'+
+                                                               '<input type="number" name="qty" data-role="spinner" class="qty-box-item" value="1">'+
+                                                               '<input type="hidden" name="product" value="'+ row.cartUrl.data.product +'">'+
+                                                               '<input type="hidden" name="uenc" value="'+ row.cartUrl.data.uenc +'">'+
+                                                               '<button type="submit" title="" class="action tocart primary">'+
+                                                                    '<span><?= __("Add to Cart") ?></span>'+
+                                                                '</button>'+
+                                                            '</form> ';
+                                return buttons;
+                            }
+                    }
+                ]
+            }
+        );
+
+      //  table.columns().every(function () {
+            $('input, select', table.column(8).footer()).on('keyup change', function () {
+
+                console.log(this);
+
+                if (table.search() !== this.value) {
+
+                    table
+                        .search(this.value)
+                        .draw();
+
+                }
+            });
+     //   });
+
+        table.on('xhr', function (e, settings, json, xhr) {
+            if (xhr.status === 302) {
+                window.location.replace(urlBuilder.build('customer/account/login'));
+            }
+        });
+
+
+        $('a.toggle-vis').on( 'click', function (e) {
+            e.preventDefault();
+            var column = table.column( $(this).attr('data-column') );
+            column.visible( ! column.visible() );
+        } );
+
+
+    });
+
+
+
+</script>

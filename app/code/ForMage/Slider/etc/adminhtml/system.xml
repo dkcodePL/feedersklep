@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="slider" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Slider</label>
+            <tab>4Mage</tab>
+            <resource>ForMage_Slider::config</resource>
+            <group id="groups" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Groups</label>
+                <field id="count" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Count</label>
+                </field>
+                <field id="name" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Groups</label>
+                    <frontend_model>ForMage\Slider\Block\Adminhtml\Form\Field\Name</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

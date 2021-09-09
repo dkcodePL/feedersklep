@@ -1,0 +1,16 @@
+{
+  "name": "4mage/m2-feeder-theme-module",
+  "description": "N/A",
+  "type": "magento2-module",
+  "license": [
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "ForMage\\FeederTheme\\": ""
+    }
+  },
+  "version": "1.0.0"
+}

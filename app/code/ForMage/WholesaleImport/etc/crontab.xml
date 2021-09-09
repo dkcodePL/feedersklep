@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="wi_update_stocks" instance="ForMage\WholesaleImport\Cron\Import" method="stocks">
+            <schedule>22 */2 * * 1-5</schedule>
+        </job>
+        <job name="wi_update_prices" instance="ForMage\WholesaleImport\Cron\Import" method="prices">
+            <schedule>54 5 * * *</schedule>
+        </job>
+        <job name="wi_update_products" instance="ForMage\WholesaleImport\Cron\Import" method="products">
+            <schedule>54 4 * * *</schedule>
+        </job>
+        <job name="wi_tasks" instance="ForMage\WholesaleImport\Cron\Task" method="tasks">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+    </group>
+</config>

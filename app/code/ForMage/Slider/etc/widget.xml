@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="formage_slider" class="ForMage\Slider\Block\Widget\Slider" is_email_compatible="false" ttl="0">
+        <label translate="true">Slider</label>
+        <description translate="true">Slider</description>
+        <parameters>
+            <parameter name="group" xsi:type="select" visible="true" source_model="ForMage\Slider\Model\Config\Source\Group">
+                <label translate="true">Group</label>
+            </parameter>
+            <parameter name="items" xsi:type="text" required="true" visible="true">
+                <label translate="true">Items</label>
+                <value translate="true">4</value>
+            </parameter>
+            <parameter name="infinite" xsi:type="select" visible="true">
+                <label translate="true">Loop</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="dots" xsi:type="select" visible="true">
+                <label translate="true">Dots</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="arrows" xsi:type="select" visible="true">
+                <label translate="true">Arrows</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="lazy" xsi:type="select" visible="true">
+                <label translate="true">Lazy Load</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="fade" xsi:type="select" visible="true">
+                <label translate="true">Fade</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="autoplay" xsi:type="select" visible="true">
+                <label translate="true">Autoplay</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="autoplay_speed" xsi:type="text" required="true" visible="true">
+                <label translate="true">Autoplay Speed</label>
+                <depends>
+                    <parameter name="autoplay" value="1"/>
+                </depends>
+                <value>2500</value>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="grid" value="default" />
+            </container>
+            <container name="content.top">
+                <template name="grid" value="default" />
+            </container>
+            <container name="content.bottom">
+                <template name="grid" value="default" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

@@ -1,0 +1,22 @@
+/** All **/
+& when (@media-common = true) {
+  .swatch-option.text {
+    line-height: 1;
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+
+}

@@ -1,0 +1,341 @@
+/** All **/
+& when (@media-common = true) {
+
+  .nav-toggle {
+    top: 26px;
+    &:before {
+      color: @color-white;
+    }
+    &:hover {
+      &:before {
+        color: @color-gray56;
+      }
+    }
+  }
+
+
+  .navigation {
+
+    .level0 {
+      &.active {
+        > a:not(.ui-state-active) {
+          border-color: @color-yellow01;
+        }
+      }
+    }
+
+    .submenu:not(:first-child) {
+      .active {
+        > a {
+          border-color: @color-yellow01;
+        }
+      }
+
+    }
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+  .nav-sections {
+    background: @color-yellow01;
+    margin-bottom: 0;
+
+    .navigation {
+      background: @color-yellow01;
+
+      .level0 {
+        .submenu {
+          background: @color-white;
+          font-weight: @font-weight__regular;
+        }
+      }
+
+      .level1 {
+       > a {
+          font-weight: @font-weight__bold;
+        }
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      > ul {
+        text-align: right;
+      }
+    }
+  }
+
+  .navigation {
+    .level0 {
+      margin: 0;
+
+      &.active, &.has-active {
+        > .level-top {
+          border: 0;
+        }
+      }
+
+      &.parent {
+        > .level-top {
+          padding-right: 4.5rem;
+
+          > .ui-menu-icon {
+            padding-right: 2rem;
+
+            &:after {
+              .icomoon();
+              content: @icomoon-play2;
+              font-size: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mega-menu {
+    margin: 0 1rem;
+
+    li {
+      &.level0 {
+        text-transform: uppercase;
+        float: left;
+
+        > .level-top {
+          color: @color-black;
+          font-size: 1.5rem;
+          font-weight: @font-weight__bold;
+          padding: 0 1.5rem;
+
+          &:hover {
+            background: @color-white;
+
+            &:before {
+              color: @color-yellow01;
+            }
+          }
+        }
+
+
+        &.menu-all {
+          > .level-top {
+            background: @color-white;
+            padding-left: 2rem;
+
+            &:before {
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              font-size: 20px;
+              line-height: inherit;
+              color: @color-yellow01;
+              content: @icon-menu;
+              font-family: 'icons-blank-theme';
+              vertical-align: bottom;
+              display: inline-block;
+              font-weight: normal;
+              overflow: hidden;
+              speak: none;
+              text-align: center;
+              padding-right: 1.5rem;
+            }
+          }
+        }
+
+        &.menu-brands {
+          > .level-top {
+            &:before {
+              content: 'M';
+              font-family: @font-family-name__base;
+              font-weight: @font-weight__bold;
+              color: @color-white;
+              margin-right: 1.5rem;
+              background: @color-black;
+              padding: 3px 5px;
+              font-size: 1.2rem;
+              line-height: 1;
+              .border-radius(50%);
+            }
+          }
+        }
+
+        &.menu-places {
+          > .level-top {
+            &:before {
+              .icomoon();
+              content: @icomoon-location;
+              margin-right: 1.5rem;
+              font-size: 1.8rem;
+              vertical-align: middle;
+            }
+          }
+        }
+
+        &.menu-yt {
+          > .level-top {
+            &:before {
+              .icomoon();
+              content: @icomoon-youtube;
+              margin-right: 1.5rem;
+              font-size: 1.8rem;
+              vertical-align: middle;
+            }
+          }
+        }
+
+        &.menu-promo {
+          float: none;
+
+          > .level-top {
+            font-size: 1.4rem;
+          }
+        }
+
+        &.menu-coupon {
+          float: none;
+
+          &:before {
+            .icomoon();
+            content: @icomoon-circle;
+            font-size: .8rem;
+            vertical-align: middle;
+            margin-left: 3px;
+            margin-right: 3px;
+          }
+
+          > .level-top {
+            font-size: 1.4rem;
+          }
+        }
+
+      }
+
+      > .submenu {
+        text-align: left;
+      }
+
+      &:not(.full-width) {
+        &.level0 {
+          > .submenu {
+            left: auto !important
+          }
+        }
+      }
+
+
+    }
+
+    .full-width {
+      &.level0 {
+
+        > .submenu {
+          width: calc(~"100vw - 20px");
+          max-width: @layout__max-width - 20px;
+          padding-bottom: 2rem;
+
+          > li {
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+            width: 33.3%;
+          }
+
+          a {
+            &.ui-state-focus {
+              background: transparent;
+            }
+
+            &:hover {
+              background: @dropdown-list-item__hover;
+            }
+          }
+
+        }
+
+        &:hover {
+          > .submenu {
+          }
+        }
+
+        .submenu {
+          text-transform: none;
+
+          .submenu {
+
+            .submenu {
+              display: none !important;
+            }
+          }
+        }
+      }
+
+      .level1 {
+
+        .ui-menu-icon {
+          display: none !important;
+        }
+
+        &.expanded {
+          display: block !important;
+
+          .ui-menu-icon {
+            display: none;
+          }
+        }
+
+        & > .submenu {
+          top: auto !important;
+          left: auto !important;
+          //left: 75% !important;
+          right: auto !important;
+          position: relative !important;
+          border: none;
+          .box-shadow(none);
+          padding-left: .5rem;
+        }
+
+        a {
+          color: @link__color;
+        }
+      }
+    }
+
+  }
+
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .mega-menu {
+    .full-width {
+      &.level0 {
+        > .submenu {
+          > li {
+            width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+  .mega-menu {
+    .full-width {
+      &.level0 {
+        > .submenu {
+          > li {
+            width: 20%;
+          }
+        }
+      }
+    }
+  }
+}

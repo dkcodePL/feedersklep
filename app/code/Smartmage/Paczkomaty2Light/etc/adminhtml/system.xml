@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="smpaczkomaty2" translate="label" type="text"
+                   sortOrder="0" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>SmartMage Paczkomaty2Light</label>
+                <field id="active" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Włączone</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="testmode" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Tryb testowy</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[W trybie testowym niektóre paczkomaty mogą nie być dostępne. Dodatkowo należy się posługiwać danymi autoryzacyjnymi dla sandboksowego API Inpostu. Niestety widget z mapką paczkomatów pokazuje punkty odbioru z API produkcyjnego. Aby prawidłowo przejść przez proces zamówienia należy użyć jednego z paczkomatów dostępnych w trybie testowym. Listę dostępnych maszyn w testowym API można podejrzeć tutaj: <a href='https://sandbox-api-shipx-pl.easypack24.net/v1/points?fields=name&page=1' target='_blank'>https://sandbox-api-shipx-pl.easypack24.net/v1/points?fields=name&page=1</a>]]></comment>
+                </field>
+                <field id="googlemapskey" translate="label" type="text"
+                       sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Klucz API Google Maps</label>
+                    <comment><![CDATA[Aby mapa działała należy wygenerować dla siebie klucz API z Google Maps. Oficjalna instrukcja pod tym linkiem: <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com/maps/documentation/javascript/get-api-key</a> lub po wyszukaniu w wyszukiwarce słów "klucz google maps api"]]></comment>
+                </field>
+                <field id="title" translate="label" type="text"
+                       sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Tytuł</label>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Nazwa metody</label>
+                </field>
+                <field id="price" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cena</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="free_shipping_prepayment" translate="label" type="text" sortOrder="41"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Darmowa dostawa powyżej</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Kwota brutto. Wpisz zero aby wyłączyć.</comment>
+                </field>
+
+                <field id="cod_active" translate="label" type="select"
+                       sortOrder="50" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Za pobraniem - włączone</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name_cod" translate="label" type="text"
+                       sortOrder="60" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Nazwa metody - za pobraniem</label>
+                </field>
+                <field id="price_cod" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cena - za pobraniem</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="free_shipping_cod" translate="label" type="text" sortOrder="71"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Darmowa dostawa za pobraniem powyżej</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Kwota brutto. Wpisz zero aby wyłączyć.</comment>
+                </field>
+                <field id="cod_warning" translate="label" type="text" sortOrder="80"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ostrzeżenie o wyborze płatności w paczkomacie</label>
+                </field>
+                <field id="sallowspecific" translate="label" type="select"
+                       sortOrder="90" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Wysyłka do wybranych krajów</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect"
+                       sortOrder="100" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Wybrane kraje</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="sort_order" translate="label" type="text"
+                       sortOrder="110" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Pozycja</label>
+                </field>
+                <field id="popenabled" translate="label" type="select"
+                        sortOrder="120" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Czy włączyć punkty POP?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="disable_cash_on_delivery" translate="label" type="select"   sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Czy ma wyłączać metodę płatności za pobraniem, gdy nie dostępna</label>
+                    <comment>Opcja zadziała, jeżeli najpierw wybieramy metodę dostawy a później metodę płatności</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cod_methods" translate="label"  type="multiselect"  sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Metody płatności za pobraniem</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allmethods</source_model>
+                    <comment>Wskazane metody zastaną włączone/wyłączone gdy klient wybierze metodę dostawy obsługującą/nie obsługującą pobrania i odwrotnie.</comment>
+                    <depends>
+                        <field id="disable_cash_on_delivery">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

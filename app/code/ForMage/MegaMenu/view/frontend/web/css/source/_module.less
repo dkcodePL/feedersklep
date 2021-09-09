@@ -1,0 +1,81 @@
+/*
+ * @copyright Copyright (c) 2018 - 2020 adam@intw.pl
+ */
+
+/** All **/
+& when (@media-common = true) {
+
+
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .full-width {
+    &.level0 {
+      > .submenu {
+        width: calc(~"100vw - 20px");
+        max-width: @layout__max-width - 20px;
+        padding-bottom: 2rem;
+
+        > li {
+          width: 25%;
+          float: left;
+        }
+
+        a {
+          &.ui-state-focus {
+            background: transparent;
+          }
+
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+
+      &:hover {
+        > .submenu {
+          top: 12rem;
+        }
+      }
+    }
+
+    .level1 {
+      .ui-menu-icon {
+        display: none !important;
+      }
+
+      &.expanded {
+        display: block !important;
+
+        .ui-menu-icon {
+          display: none;
+        }
+      }
+
+      & > .submenu {
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        position: relative !important;
+        border: none;
+        padding-left: .5rem;
+      }
+
+      > a {
+        text-transform: uppercase;
+        color: @color-gray20;
+      }
+    }
+  }
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+}
+
+
+

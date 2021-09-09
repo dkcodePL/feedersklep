@@ -1,0 +1,84 @@
+<div class="contextual-bar" style="display: none" data-bind="visible: true">
+
+    <div class="shop-search" data-bind="{visible: selectedMarker() === null}">
+        <div class="fulltext-search-wrapper clearfix" >
+            <div class="geocoder-wrapper">
+                <div class="block-title">
+                    <span role="heading" aria-level="1" data-bind="text: $t('Search shop')"></span>
+                </div>
+                <form class="form" data-bind="submit: searchCurrentPlaces">
+                    <div class="store-search-form">
+                        <div class="field">
+                            <div class="ui-widget map-search-autocomplete">
+                                <input type="text" id="searchMarker"  data-bind="afterRender: markerAutocompleteSearch" name="text"/>
+                            </div>
+                        </div>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <button type="submit" id="submitSearch" class="action primary"><span data-bind="text: $t('Search')"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="geocoder-wrapper__btn" data-bind="{ scope: requestChild('geocoder')}">
+                <div class="geocoder-wrapper" data-bind=" afterRender: initGeocoder">
+                    <form class="form">
+                        <div class="geolocalize-container">
+                            <div class="primary">
+                                <a data-bind="{click: $parent.geolocalize.bind($parent), attr : {title: $t('Geolocalize me') } }" class="action primary geolocalize" href="#"></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-result-display"></div>
+        <div class="search-result-list" data-bind="{scope: requestChild('store-list'), visible: selectedMarker() === null }">
+            <div class="search-result-header">
+                <p data-bind="text: $t(searchResultsLabel).replace('%s', $parent.countDisplayedMarkers.bind($parent))"></p>
+                <span data-bind="if: $parent.displayReset()"><a data-bind="{click: $parent.resetMap.bind($parent)}"><span class="span-underline" data-bind="text: $t(viewAllLabel)"></span></a></span>
+            </div>
+            <div class="store-locator-display-wrapper" data-bind="{mageInit: {'mapMobile':{}}}">
+                <button id="display-store-list-mobile" class="display-btn active" data-bind="text: $t('List')"></button>
+                <button id="display-store-map-mobile" class="display-btn" data-bind="text: $t('Map')"></button>
+            </div>
+            <!-- ko if: $parent.displayedMarkers().length  < $parent.max_visible_shop -->
+            <ul data-bind="{foreach: $parent.displayedMarkers()}">
+                <li data-bind="{template: $parent.storeListTemplate, attr: { 'data-shop-name': name}, mageInit: {'listItemEvent':{}}}" class="result-item clearfix"></li>
+            </ul>
+            <!-- /ko -->
+            <!-- ko ifnot: $parent.displayedMarkers().length < $parent.max_visible_shop -->
+            <div class="max_stores_message">
+                <strong data-bind="text: $t('Narrow your search to see store details')"></strong>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+
+    <div class="shop-details" data-bind="{scope: requestChild('store-list'), visible: selectedMarker() !== null }">
+
+        <!-- ko if: ($parent.selectedMarker() && $parent.selectedMarker.bind($parent)) -->
+            <div class="shop-details-wrapper" data-bind="{template: { name: storeDetailTemplate, data: $parent.selectedMarker() }}"></div>
+        <!--/ko -->
+        <div class="close-btn-wrapper">
+            <button type="button"
+                    class="action close"
+                    data-action="close"
+                    data-bind="{ click : $parent.closeDetails.bind($parent), attr: { title: $t('Close') }}">
+                <span data-bind="i18n: 'Close'"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="map" data-bind="afterRender: initMap"> 
+    <!-- ko if: isShowCopyrightInfo() -->
+    <div class="copyright-info-wrapper">
+        <a class="copyright-link" data-bind="attr: { href: getCopyrightLink() }">
+            <span class="copyright-text" data-bind="text: getCopyrightText()"></span>
+        </a>
+    </div>
+    <!-- /ko -->
+</div>

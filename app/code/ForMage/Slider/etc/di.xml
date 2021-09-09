@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="SliderImageUpload" type="ForMage\Base\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">tmp/slide</argument>
+            <argument name="basePath" xsi:type="string">slide</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="ForMage\Slider\Model\Slide">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">SliderImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slide_listing_data_source" xsi:type="string">ForMage\Slider\Model\ResourceModel\Slide\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="ForMage\Slider\Model\ResourceModel\Slide\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">4mage_slide</argument>
+            <argument name="eventPrefix" xsi:type="string">slider_slide_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slider_slide_collection</argument>
+            <argument name="resourceModel" xsi:type="string">ForMage\Slider\Model\ResourceModel\Slide</argument>
+        </arguments>
+    </type>
+    <virtualType name="SlideGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SlideGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="object" shared="false">ForMage\Slider\Model\ResourceModel\Slide\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SlideGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

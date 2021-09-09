@@ -1,0 +1,15 @@
+{
+  "name": "4mage/m2-base",
+  "description": "N/A",
+  "type": "magento2-module",
+  "license": "Commercial",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "ForMage\\Base\\": ""
+    }
+  },
+  "version": "1.0.2"
+}

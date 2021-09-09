@@ -1,0 +1,253 @@
+<?php
+    $paczkomatyPoint = $this->getPaczkomatyTargetPoint();
+    $paczkomatyIsPOP = $this->getIsPOP();
+    $helper = $this->helper('Smartmage\Paczkomaty2Light\Helper\Data');
+    $apiUrl = $helper->getAPIUrl();
+    $codWarning = $helper->getConfig('carriers/smpaczkomaty2/cod_warning');
+    $isPopEnabled = $helper->getConfig('carriers/smpaczkomaty2/popenabled');
+    $googleMapsKey = $helper->getConfig('carriers/smpaczkomaty2/googlemapskey');
+?>
+<input type="hidden" id="paczkomaty_point" name="paczkomaty_point"/>
+<input type="hidden" id="paczkomaty_point_cod" name="paczkomaty_point_cod"/>
+<style>
+    #select_paczkomaty_point,
+    #select_paczkomaty_point_cod{
+        padding:10px;
+        display:inline-block;
+        border-radius:20px;
+        border:1px solid #ccc;
+        font-size: 12px;
+        cursor:pointer;
+        transition:.3s;
+    }
+</style>
+<script type="text/javascript">
+    require(
+        ['jquery', 'smpaczkomatySdk', 'mage/translate'],
+        function ($, smpaczkomatySdk, $t) {
+
+            function changeMachineLabel(pointName,changeCOD = true)
+            {
+                if($('#select_paczkomaty_point').length) {
+                    if (changeCOD)
+                    {
+                        $('#select_paczkomaty_point_cod').text(
+                            $t('Paczkomat') + ' ' + pointName
+                            + '. ' + $t('Zmień paczkomat')
+                        );
+                        $('#paczkomaty_point_cod').val(pointName);
+                    }
+                    else
+                    {
+                        $('#select_paczkomaty_point_cod').text(
+                            $t('Wybierz paczkomat')
+                        );
+                        $('#paczkomaty_point_cod').val('');
+                    }
+                    $('#select_paczkomaty_point').text(
+                        $t('Paczkomat') + ' ' + pointName
+                        + '. ' + $t('Zmień paczkomat')
+                    );
+
+                    $('#paczkomaty_point').val(pointName);
+                } else {
+                    setTimeout(function() {
+                        changeMachineLabel(pointName,changeCOD);
+                    }, 2000);
+                }
+            }
+
+            function addWidgetLink()
+            {
+                if($('#label_method_paczkomaty2_smpaczkomaty2').length && $('#select_paczkomaty_point').length == 0) {
+                    defaultLabel = $('#label_method_paczkomaty2_smpaczkomaty2').text();
+                    addToLabel = '<br/><a href="#" id="select_paczkomaty_point">' + $t('Wybierz paczkomat') + '</a>';
+                    $('#label_method_paczkomaty2_smpaczkomaty2').html(defaultLabel + addToLabel);
+
+                    addToLabelCod = '<br/><a href="#" id="select_paczkomaty_point_cod">' + $t('Wybierz paczkomat') + '</a>';
+                    $('#label_method_paczkomaty2cod_smpaczkomaty2').html(defaultLabel + addToLabelCod);
+                } else {
+                    setTimeout(function() {
+                        addWidgetLink();
+                    }, 2000);
+                }
+            }
+
+            function inpostOpenModal(type) {
+                var mapConfig = {
+                    apiEndpoint: '<?php echo $apiUrl; ?>',
+                    defaultLocale: 'pl',
+                    mapType: 'osm',
+                    searchType: 'osm',
+
+                    <?php if ( $isPopEnabled == '1'):?>
+
+                    points: {
+                        types: ['parcel_locker', 'pop']
+                    },
+                    map: {
+                        initialTypes: ['parcel_locker', 'pop'],
+                        googleKey: '<?php echo $googleMapsKey ?>'
+                    }
+
+                    <?php else:?>
+
+                    points: {
+                        types: ['parcel_locker']
+                    },
+                    map: {
+                        initialTypes: ['parcel_locker'],
+                        googleKey: '<?php echo $googleMapsKey ?>'
+                    }
+
+                    <?php endif;?>
+                };
+
+                if ( type === "cod" ) {
+                    mapConfig.points = {
+                        types: ['parcel_locker']
+                    };
+                    mapConfig.map = {
+                        initialTypes: ['parcel_locker']
+                    };
+                }
+                easyPack.init(mapConfig);
+
+                easyPack.modalMap(function(point, modal) {
+                    modal.closeModal();
+
+                    var dataToSend = {
+                        'machine': point.name,
+                        'type': point.type,
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/paczkomaty/index/index',
+                        data: dataToSend,
+                        dataType: 'json',
+                        showLoader: true
+                    }).done(function(data) {
+                        if(data.status == 1) {
+                            $('[name="paczkomaty_point"]').val(point.name);
+                            if (type === "default" && data.is_pop == true)
+                            {
+                                changeMachineLabel(point.name,false);
+                            }
+                            else
+                            {
+                                $('[name="paczkomaty_point_cod"]').val(point.name);
+                                changeMachineLabel(point.name,true);
+                            }
+                        } else {
+                            alert(data.message);
+                        }
+                    });
+                    // Remove all modal
+                    jQuery('#widget-modal').parent().remove();
+                }, {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight});
+
+                $('#widget-modal').parent().css('background', '#fff');
+                $('#widget-modal').parent().css('overflow-y', 'auto');
+                $('#widget-modal').css('width', 'calc(100% - 30px)');
+                $('#widget-modal').css('height', 'calc(100% - 30px)');
+
+                if (type === "cod")
+                {
+                    if($('[name="paczkomaty_point_cod"]').val()) {
+
+                        setTimeout(function () {
+
+                            easyPack.map.searchLockerPoint($('[name="paczkomaty_point_cod"]').val());
+
+                        }, 1000);
+
+                        setTimeout(function () {
+
+                            $('#easypack-search').val($('[name="paczkomaty_point_cod"]').val());
+
+                        }, 2000);
+
+                    } else {
+
+                        var postcode = ($('[name="postcode"]').val()) ? $('[name="postcode"]').val() : '';
+                        var city = ($('[name="city"]').val()) ? $('[name="city"]').val() : '';
+
+                        if(postcode || city) {
+                            var searchBy = postcode + ' ' + city;
+
+                            setTimeout(function () {
+
+                                easyPack.map.searchPlace(searchBy);
+
+                            }, 1000);
+
+                        }
+                    }
+                }
+                else
+                {
+                    if($('[name="paczkomaty_point"]').val()) {
+
+                        setTimeout(function () {
+
+                            easyPack.map.searchLockerPoint($('[name="paczkomaty_point"]').val());
+
+                        }, 1000);
+
+                        setTimeout(function () {
+
+                            $('#easypack-search').val($('[name="paczkomaty_point"]').val());
+
+                        }, 2000);
+
+                    } else {
+
+                        var postcode = ($('[name="postcode"]').val()) ? $('[name="postcode"]').val() : '';
+                        var city = ($('[name="city"]').val()) ? $('[name="city"]').val() : '';
+
+                        if(postcode || city) {
+                            var searchBy = postcode + ' ' + city;
+
+                            setTimeout(function () {
+
+                                easyPack.map.searchPlace(searchBy);
+
+                            }, 1000);
+
+                        }
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+
+                <?php if($paczkomatyPoint):?>
+
+                $('[name="paczkomaty_point"]').val('<?php echo $paczkomatyPoint ?>');
+                $.data(document.body, 'paczkomaty_point','<?php echo $paczkomatyPoint ?>');
+                <?php if ($paczkomatyIsPOP): ?>
+                    changeMachineLabel('<?php echo $paczkomatyPoint; ?>',false);
+                <?php else: ?>
+                    $.data(document.body, 'paczkomaty_point_cod','<?php echo $paczkomatyPoint ?>');
+                    $('[name="paczkomaty_point_cod"]').val('<?php echo $paczkomatyPoint ?>');
+                    changeMachineLabel('<?php echo $paczkomatyPoint; ?>',true);
+                <?php endif; ?>
+
+                <?php endif;?>
+
+                addWidgetLink();
+
+                $(document).on('click', '#select_paczkomaty_point', function (e) {
+                    e.preventDefault();
+                    inpostOpenModal('default');
+                });
+
+                $(document).on('click', '#select_paczkomaty_point_cod', function (e) {
+                    e.preventDefault();
+                    inpostOpenModal('cod');
+                });
+
+            });
+        });
+</script>

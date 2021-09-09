@@ -1,0 +1,17 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <remove src="css/styles-m.css"/>
+        <remove src="css/styles-l.css"/>
+        <remove src="css/print.css"/>
+        <remove src="css/bootstrap-grid.min.css"/>
+    </head>
+
+
+    <body>
+        <referenceContainer name="content">
+        <block class="ForMage\FeederTheme\Block\Product\Cenowki" name="cenowki" template="ForMage_FeederTheme::cenowki.phtml" cacheable="false">
+        </block>
+        </referenceContainer>
+    </body>
+</page>

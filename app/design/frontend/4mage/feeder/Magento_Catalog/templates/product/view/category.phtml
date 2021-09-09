@@ -1,0 +1,12 @@
+<?php
+$_product = $block->getProduct();
+$_category = $block->getProductCategory($_product);
+?>
+<span><?= $block->escapeHtml(__('Category')) ?>: </span>
+<span class="category-name">
+<?php if ($_category) :?>
+    <a href="<?= $block->escapeHtml($_category->getUrl()) ?>"><?= $block->escapeHtml($_category->getName()) ?></a>
+<?php else :?>
+    <?= $block->escapeHtml(__('None')) ?>
+<?php endif;?>
+</span>

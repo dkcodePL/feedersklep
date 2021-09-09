@@ -1,0 +1,12 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php $id = 'mm' . rand(10, 500) ?>
+<nav class="navigation" data-action="navigation">
+    <ul id="<?= /* @escapeNotVerified */ $id ?>" class="mega-menu" data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"of":"#<?= /* @escapeNotVerified */ $id ?>","at":"left bottom", "my":"left top"}}}'>
+        <?= /* @escapeNotVerified */ $_menu ?>
+        <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+    </ul>
+</nav>

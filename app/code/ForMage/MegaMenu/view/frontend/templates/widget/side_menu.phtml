@@ -1,0 +1,31 @@
+<?php
+/**
+ * @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'sub-menu', $columnsLimit) ?>
+
+<nav id="side-nav" data-action="navigation">
+    <ul id="side-menu">
+        <?= /* @escapeNotVerified */ $_menu ?>
+        <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+    </ul>
+</nav>
+
+
+
+<script>
+    require([
+        'jquery',
+        'jquery/ui',
+        'domReady!'
+    ], function ($) {
+        $( "#side-menu" ).menu({
+            position: { my: "left top", of: "#side-menu" }
+        });
+    });
+</script>

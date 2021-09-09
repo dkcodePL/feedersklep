@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="ForMage_Base::base">
+                    <resource id="ForMage_WholesaleImport::allegro" title="4mage Wholesale Import" translate="title" sortOrder="100">
+                        <resource id="ForMage_WholesaleImport::wholesale" title="Manage" sortOrder="50" />
+                        <resource id="ForMage_WholesaleImport::task" title="Task" sortOrder="50" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="ForMage_WholesaleImport::config" title="4mage Wholesale Import" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

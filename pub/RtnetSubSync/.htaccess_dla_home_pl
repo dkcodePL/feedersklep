@@ -1,0 +1,8 @@
+# Jeśli używasz hostingu w home.pl, w przypadku występowania błędu 500 należy:
+# 1. Usuń istniejący plik .htaccess
+# 2. Zmień nazwę tego pliku na .htaccess
+
+<Files ~ "\.debug\.txt|\.errors\.txt">
+  Order allow,deny
+  Deny from all
+</Files>

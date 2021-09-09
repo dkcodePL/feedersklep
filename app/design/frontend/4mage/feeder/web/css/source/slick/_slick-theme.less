@@ -1,0 +1,120 @@
+& when (@media-common = true) {
+@charset "UTF-8";
+
+  // Default Variables
+
+  @slick-loader-path: "../images/";
+  @slick-arrow-color: @color-white;
+  @slick-dot-color: @color-black;
+  @slick-dot-color-active: @color-yellow01;
+  @slick-prev-character: "←";
+  @slick-next-character: "→";
+  // @slick-dot-character: @icomoon-dot;
+  @slick-dot-size: 15px;
+  @slick-opacity-default: 0.75;
+  @slick-opacity-on-hover: 1;
+  @slick-opacity-not-active: 0.25;
+
+  /* Slider */
+
+  .slick-loading .slick-list {
+    background-image: url('../images/puff.svg');
+    background-repeat: no-repeat;
+    background-size: 125px;
+    background-position: center center;
+  }
+
+  /* Arrows */
+
+  .slick-prev,
+  .slick-next {
+    position: absolute;
+    display: block;
+    z-index: 100;
+    cursor: pointer;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    border: none;
+    outline: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+    background: @color-black;
+    color: @color-white;
+    padding: 1.2rem;
+    .border-radius(50%);
+
+    &.icon-play {
+      &:before {
+        margin-left: 3px;
+      }
+    }
+
+    &.icon-play3 {
+      &:before {
+        margin-right: 3px;
+      }
+    }
+
+    &.slick-disabled {
+      &:before {
+        opacity: @slick-opacity-not-active;
+      }
+      &:hover, &:focus {
+        outline: none;
+
+        &:before {
+          opacity: @slick-opacity-not-active;
+        }
+      }
+    }
+
+    &:hover, &:focus {
+      outline: none;
+
+      &:before {
+        opacity: @slick-opacity-on-hover;
+      }
+    }
+
+  }
+
+  .slick-disabled:before {
+    opacity: @slick-opacity-not-active;
+  }
+
+
+  .slick-prev {
+    left: 1rem;
+
+    [dir="rtl"] & {
+      left: auto;
+      right: 1rem;
+    }
+
+  }
+
+  .slick-next {
+    right: 1rem;
+
+    [dir="rtl"] & {
+      left: 1rem;
+      right: auto;
+    }
+
+  }
+
+  .slick-slider {
+    &:hover {
+      .slick-prev,
+      .slick-next {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s linear;
+      }
+    }
+  }
+
+}

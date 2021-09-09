@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">menu_menu.menu_menu_data_source</item>
+        </item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+        <item name="label" xsi:type="string" translate="true">MegaMenu</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="ForMage\MegaMenu\Block\Adminhtml\Form\Button\Save"/>
+            <button name="delete" class="ForMage\MegaMenu\Block\Adminhtml\Form\Button\Delete"/>
+        </buttons>
+        <namespace>menu_menu</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>menu_menu.menu_menu_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="menu_menu_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="megamenu/menu/save"/>
+            <validateUrl path="megamenu/menu/validate"/>
+        </settings>
+        <dataProvider class="ForMage\MegaMenu\Ui\Component\DataProvider" name="menu_menu_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>menu_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="menu">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">MegaMenu</label>
+        </settings>
+        <field name="path" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">path</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">is_active</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="custom_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="source" xsi:type="string">custom_name</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Custom Name</label>
+                <dataScope>custom_name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="custom_url" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">custom_url</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Custom Url</label>
+                <dataScope>custom_url</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="drop_down" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">drop_down</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">DropDown</label>
+                <dataScope>drop_down</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="full_width" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">full_width</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Full Width</label>
+                <dataScope>full_width</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="type" component="ForMage_MegaMenu/js/select-type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <dataScope>type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <caption translate="true">-- Please Select --</caption>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">cms</item>
+                                <item name="label" xsi:type="string" translate="true">CMS Page</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">block</item>
+                                <item name="label" xsi:type="string" translate="true">CMS Block</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">category</item>
+                                <item name="label" xsi:type="string" translate="true">Category</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">current_category</item>
+                                <item name="label" xsi:type="string" translate="true">Current Category</item>
+                            </option>
+                            <option name="4" xsi:type="array">
+                                <item name="value" xsi:type="string">custom</item>
+                                <item name="label" xsi:type="string" translate="true">Custom</item>
+                            </option>
+                        </options>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="category" component="ForMage_MegaMenu/js/select-category" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="isRemoveSelectedIcon" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Category</label>
+                <dataScope>categories</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="cms" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">CMS Page</label>
+                <dataScope>type_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="ForMage\MegaMenu\Model\Menu\Source\Cms"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="block" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">CMS Block</label>
+                <dataScope>type_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="ForMage\MegaMenu\Model\Menu\Source\Block"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="description" template="ui/form/field" sortOrder="50" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">100px</item>
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">false</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="source" xsi:type="string">category</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="custom_url" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="source" xsi:type="string">custom_url</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Custom Url</label>
+                <dataScope>custom_url</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="validate-url" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="class" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="source" xsi:type="string">class</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Class</label>
+                <dataScope>class</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="stores" component="ForMage_MegaMenu/js/multiselect-store" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">stores</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <visible>true</visible>
+                <label translate="true">Store View</label>
+                <dataScope>store_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="ForMage\MegaMenu\Ui\Component\Listing\Column\Menu\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

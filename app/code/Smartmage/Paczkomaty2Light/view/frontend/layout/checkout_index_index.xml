@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://geowidget.easypack24.net/css/easypack.css" src_type="url"/>
+        <!--<css src="Smartmage_Paczkomaty2Light::css/easypack.css"/>-->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Smartmage\Paczkomaty2Light\Block\Checkout\Shipping" name="smartmage_paczkomaty2_shipping" template="Smartmage_Paczkomaty2Light::smpaczkomaty2.phtml" />
+        </referenceContainer>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <!--// walidacja metody dostawy - kiedy ma się pojawiać; sprawdza czy email i telefon jest wypełniony -->
+                                                <item name="step-config" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping-rates-validation" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="smpaczkomaty2-rates-validation" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Smartmage_Paczkomaty2Light/js/view/paczkomaty2</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

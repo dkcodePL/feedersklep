@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">wholesaleimport_wholesale_listing.wholesaleimport_wholesale_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>wholesaleimport_wholesale_columns</spinner>
+        <deps>
+            <dep>wholesaleimport_wholesale_listing.wholesaleimport_wholesale_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="wholesaleimport_wholesale_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>ForMage_WholesaleImport::wholesale</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="wholesaleimport_wholesale_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="wholesaleimport_wholesale_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="wholesale_name">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="ForMage\WholesaleImport\Ui\Component\Listing\Column\WholesaleActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrlPath" xsi:type="string">wholesaleimport/wholesale/edit</item>
+                    <item name="urlEntityParamName" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

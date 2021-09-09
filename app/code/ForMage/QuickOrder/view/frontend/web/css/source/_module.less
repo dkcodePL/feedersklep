@@ -1,0 +1,65 @@
+/*
+ *  4mage Package
+ *
+ *  NOTICE OF LICENSE
+ *
+ *  This source file is subject to the 4mage.co license that is
+ *  available through the world-wide-web at this URL:
+ *  https://4mage.co/license-agreement/
+ *
+ *  DISCLAIMER
+ *
+ *  Do not edit or add to this file if you wish to upgrade this extension to newer
+ *  version in the future.
+ *
+ *  @category 	ForMage
+ *  @package 	ForMage_QuickOrder
+ *  @copyright 	Copyright (c) 2020 4mage.co (https://4mage.co/)
+ *  @license  	https://4mage.co/license-agreement/
+ *
+ */
+
+@import "lib/_dataTables";
+@import "lib/_flex";
+
+& when (@media-common = true) {
+  .quickorder-product-index {
+
+    .page-main {
+      max-width: 2560px !important;
+    }
+
+    .product_addtocart_form {
+      max-width: 250px;
+      .flex-display();
+      .ui-spinner {
+        .flex-display();
+        input {
+          width: 100px;
+          text-align: center;
+          .flex-order(2);
+        }
+        .ui-spinner-up {
+          .flex-order(1);
+        }
+        .ui-spinner-down {
+          .flex-order(3);
+        }
+      }
+    }
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+}
+
+
+

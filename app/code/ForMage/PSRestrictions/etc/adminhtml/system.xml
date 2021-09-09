@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module: Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="psrestrictions" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Shipping Restrictions</label>
+            <tab>4Mage</tab>
+            <resource>Formage_PSRestrictions::config</resource>
+            <group id="restrictions" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Restrictions</label>
+                <field id="enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>\Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="free" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show only free methods if available</label>
+                    <source_model>\Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="shipping" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide other shipping methods</label>
+                    <source_model>\Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="available" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Shipping Methods</label>
+                    <frontend_model>ForMage\PSRestrictions\Block\Adminhtml\Form\Field\RestrictionField</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

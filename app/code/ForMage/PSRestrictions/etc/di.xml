@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Shipping\Model\Rate\Result">
+        <plugin name="shipping_result" type="ForMage\PSRestrictions\Plugin\Shipping\Model\Rate\Result"/>
+    </type>
+    <type name="Magento\Payment\Model\Checks\SpecificationFactory">
+        <plugin name="payment_checks" type="ForMage\PSRestrictions\Plugin\Payment\Checks\Specification"/>
+    </type>
+    <type name="Magento\Payment\Model\Checks\SpecificationFactory">
+        <arguments>
+            <argument name="mapping" xsi:type="array">
+                <item name="payment_checks_shipping" xsi:type="object">ForMage\PSRestrictions\Model\Checks\Shipping</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="ForMage\PSRestrictions\Plugin\Payment\Checks\Specification">
+        <arguments>
+            <argument name="additionalChecks" xsi:type="array">
+                <item name="payment_checks_shipping" xsi:type="string">payment_checks_shipping</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

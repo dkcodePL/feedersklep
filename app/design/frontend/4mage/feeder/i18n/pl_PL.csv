@@ -1,0 +1,19 @@
+My Cart,Koszyk
+View Cart,Pokaż koszyk
+products,produkty
+Add to Cart,Do koszyka
+Now Shopping by,Zastosowane filtry
+"Find a store ...","Szukaj sklepu ..."
+"My store : %s","Mój sklep : %s"
+"Store Delivery Addresses","Dostawa do sklepów"
+"Select Store Address","Wybierz sklep"
+Map,Mapa
+Search shop,Wyszukaj sklep
+Directions,"Zobacz na mapie"
+Choose Store,Wybierz sklep
+Change Store,Zmień sklep
+Geolocalize me,Zlokalizuj mnie
+"Store Address","Adres sklepu"
+"Enter your destination to get a shipping estimate.","Wprowadż swój adres, żeby zobaczyć koszty transportu"
+"The requested qty is not available","Żądana ilość nie jest obecnie dostępna, zmniejsz ilość by dokonać zakupu"
+"We received too many requests for password resets. Please wait and try again later or contact %1.","Otrzymaliśmy za dużo żądań o zmianę hasła. Spróbuj później lub skontaktuj się z nami %1.",module,Magento_Security

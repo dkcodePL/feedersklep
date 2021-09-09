@@ -1,0 +1,89 @@
+<?php $categories = $block->getCategories(); ?>
+<?php $firstItem = $categories->getFirstItem(); ?>
+<div class="product-tabs-container">
+    <div id="<?= /* @escapeNotVerified */ $block->getElementId(); ?>" class="product-tabs-container-inner">
+        <div class="product-tabs-list">
+            <h3><span><?= /* @escapeNotVerified */ $block->getText(); ?></span></h3>
+            <ul class="product-tabs" data-role="tabs">
+                <?php foreach ($categories as $category):?>
+                    <li class="<?= $firstItem->getId() === $category->getId() ? 'active' : '' ?>" data-role="link">
+                        <a class="" href="#<?= /* @escapeNotVerified */ $block->getElementId() . '-' . $category->getId(); ?>"
+                           data-ajax="<?= /* @escapeNotVerified */ $firstItem->getId() !== $category->getId() ? true: false ?>"
+                           data-href="<?= /* @escapeNotVerified */ $firstItem->getId() !== $category->getId() ? $block->getUrl('productab/product/load', ['type' => 'tabs', 'category_id' => $category->getId()]) : '' ?>"
+                           data-category-url="<?= /* @escapeNotVerified */ $block->getCategoryUrl($category) ?>"
+                           id="tab-label-<?= /* @escapeNotVerified */ $block->getElementId() . '-' . $category->getId() ?>-title">
+                            <?= /* @escapeNotVerified */ $category->getName() ?>
+                        </a>
+                    </li>
+                <?php endforeach;?>
+                <li class="go-to" data-role="link">
+                    <a href="<?= /* @escapeNotVerified */ $firstItem->getUrl(); ?>"><?= /* @escapeNotVerified */ __('View All'); ?></a>
+                </li>
+            </ul>
+        </div>
+        <div id="<?= /* @escapeNotVerified */ $block->getElementId() . '-' . $firstItem->getId(); ?>" class="content preload product-items" data-role="content">
+            <?= /* @escapeNotVerified */ $block->getProducts($firstItem)->toHtml(); ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+        {
+            "#<?= /* @escapeNotVerified */ $block->getElementId(); ?>":
+            {
+                "productTabs":
+                {
+                    "goTo": "#<?= /* @escapeNotVerified */ $block->getElementId(); ?> .go-to",
+                    "contentClass": "content product-items",
+                    "slick": {
+                        "slidesToShow": "<?= /* @escapeNotVerified */ $block->getItems(); ?>",
+                        "slidesToScroll": "<?= (bool)$block->getScroll() ?/* @escapeNotVerified */ $block->getItems() : 1; ?>",
+                        "lazyLoad": "<?= (bool)$block->getLazy() ? 'progressive' : '' ?>",
+                        "arrows": <?= $block->getNav() ? 'true' : 'false' ?>,
+                        "autoplay": <?= (bool)$block->getAutoplay() ? 'true' : 'false' ?>,
+                        "infinite": <?= (bool)$block->getInfinite() || (bool)$block->getScroll() ? 'true' : 'false' ?>,
+                        "autoplaySpeed": <?= $block->getAutoplaySpeed() ?: 2500 ?>,
+                        "fade": <?= (bool)$block->getFade() ? 'true' : 'false' ?>,
+                        "responsive": [
+                        {
+                                "breakpoint": 1024,
+                                "settings": {
+                                    "slidesToShow": <?= /* @escapeNotVerified */ $block->getItems(); ?>,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ?/* @escapeNotVerified */ $block->getItems() : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 768,
+                                "settings": {
+                                    "slidesToShow": 4,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 4 : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 640,
+                                "settings": {
+                                    "slidesToShow": 3,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 3 : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 480,
+                                "settings": {
+                                    "slidesToShow": 2,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 2 : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 1,
+                                "settings": {
+                                    "slidesToShow": 1,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 1 : 1; ?>
+                                }
+                            }
+                        ]
+                            }
+
+                        }
+                    }
+            }
+</script>

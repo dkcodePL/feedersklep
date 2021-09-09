@@ -1,0 +1,15 @@
+<?php
+/**
+ * @copyright Copyright (c) 2018 - 2020 adam@intw.pl
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<nav class="navigation" data-action="navigation">
+    <ul id="mmm" class="mega-menu" data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"of":"#mmm","at":"left bottom", "my":"left top"}}}'>
+        <?= /* @escapeNotVerified */ $_menu ?>
+        <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+    </ul>
+</nav>

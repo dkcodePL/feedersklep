@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">wholesaleimport_wholesale_type1_form.wholesaleimport_wholesale_type1_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Categories</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="ForMage\WholesaleImport\Block\Adminhtml\Wholesale\Button\Save"/>
+        </buttons>
+        <namespace>wholesaleimport_wholesale_type1_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>wholesaleimport_wholesale_type1_form.wholesaleimport_wholesale_type1_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="wholesaleimport_wholesale_type1_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="wholesaleimport/wholesale_type1/save"/>
+            <validateUrl path="wholesaleimport/wholesale_type1/validate"/>
+            <dataScope>data</dataScope>
+            <deps>
+                <dep>wholesaleimport_wholesale_type1_form.wholesaleimport_wholesale_type1_form_data_source</dep>
+            </deps>
+        </settings>
+        <dataProvider class="ForMage\WholesaleImport\Ui\Wholesale\DataProvider" name="wholesaleimport_wholesale_type1_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="wholesale">
+        <settings>
+            <label translate="false">Wholesale</label>
+        </settings>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">is_active</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="wholesale_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">wholesale_name</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>wholesale_name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="wholesale_attribute_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">wholesale_attribute_id</item>
+                    <item name="default" xsi:type="string">wholesale_attribute_id</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <visible>true</visible>
+                <label translate="true">Wholesale</label>
+                <dataScope>wholesale_attribute_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <caption translate="true">-- Please Select --</caption>
+                        <options class="ForMage\WholesaleImport\Model\Source\Wholesale"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="update_products" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">update_products</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Update Products</label>
+                <dataScope>update_products</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="update_stocks" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">update_stocks</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Update Stocks</label>
+                <dataScope>update_stocks</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="update_prices" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">update_prices</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Update Prices</label>
+                <dataScope>update_prices</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="settings">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="false">Settings</label>
+        </settings>
+        <field name="pre_sku" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">pre_sku</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">SKU Prefix</label>
+                <dataScope>pre_sku</dataScope>
+            </settings>
+        </field>
+        <field name="sku_source" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">sku_source</item>
+                    <item name="default" xsi:type="string">sku_source</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <visible>true</visible>
+                <label translate="true">SKU Source</label>
+                <dataScope>sku_source</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <caption translate="true">-- Please Select --</caption>
+                        <options class="ForMage\WholesaleImport\Model\Source\XmlAttribute"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="price" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">price</item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Price</label>
+                <dataScope>price</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="url_key" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="source" xsi:type="string">url_key</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Url Key</label>
+                <dataScope>url_key</dataScope>
+            </settings>
+        </field>
+        <field name="images" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">images</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Import images</label>
+                <dataScope>images</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="store" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Store</label>
+                <dataScope>store</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Store"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="set" formElement="select">
+            <argument name="data" xsi:type="array">
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Attribute Set</label>
+                <dataScope>set</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Model\Product\AttributeSet\Options"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="categories" component="Magento_Catalog/js/components/new-category" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fit" xsi:type="boolean">false</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="showFallbackReset" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Categories</label>
+                <dataScope>default_categories</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="stock" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">stock</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <visible>true</visible>
+                <label translate="true">Stock</label>
+                <dataScope>stock</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <caption translate="true">-- Please Select --</caption>
+                        <options class="ForMage\WholesaleImport\Model\Source\InventorySource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="categories">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Categories</label>
+        </settings>
+        <dynamicRows name="categories">
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Record Example</item>
+                        <item name="disabled" xsi:type="boolean">false</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <field name="row_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">ID</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="dataScope" xsi:type="string">row_id</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="wholesale" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">wholesale</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <visible>true</visible>
+                        <label translate="true">Wholesale</label>
+                        <dataScope>wholesale</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <caption translate="true">-- Please Select --</caption>
+                                <options class="ForMage\WholesaleImport\Model\Source\Category"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="categories" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">category</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <visible>true</visible>
+                        <label translate="true">Store</label>
+                        <dataScope>category</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <caption translate="true">-- Please Select --</caption>
+                                <options class="ForMage\WholesaleImport\Model\Source\StoreCategory"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="position">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="componentType" xsi:type="string">field</item>
+                            <item name="label" xsi:type="string" translate="true">Position</item>
+                            <item name="dataScope" xsi:type="string">position</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="attributes">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Attributes</label>
+        </settings>
+        <dynamicRows name="attributes">
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Record Example</item>
+                        <item name="disabled" xsi:type="boolean">false</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <field name="row_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">ID</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="dataScope" xsi:type="string">row_id</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="attribute" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="default" xsi:type="string">attribute</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <visible>true</visible>
+                        <label translate="true">Attribute</label>
+                        <dataScope>attribute</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <caption translate="true">-- Please Select --</caption>
+                                <options class="ForMage\WholesaleImport\Model\Source\Attribute"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="file_field" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">file_field</item>
+                            <item name="default" xsi:type="string">file_field</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <visible>true</visible>
+                        <label translate="true">XML Attribute</label>
+                        <dataScope>file_field</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <caption translate="true">-- Please Select --</caption>
+                                <options class="ForMage\WholesaleImport\Model\Source\XmlAttribute"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="position">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="componentType" xsi:type="string">field</item>
+                            <item name="label" xsi:type="string" translate="true">Position</item>
+                            <item name="dataScope" xsi:type="string">position</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="custom_attributes">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Attributes Custom Values</label>
+        </settings>
+        <dynamicRows name="custom_attributes">
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Record Example</item>
+                        <item name="disabled" xsi:type="boolean">false</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <field name="row_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">ID</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="dataScope" xsi:type="string">row_id</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="attribute" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="default" xsi:type="string">attribute</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <visible>true</visible>
+                        <label translate="true">Attribute</label>
+                        <dataScope>attribute</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <caption translate="true">-- Please Select --</caption>
+                                <options class="ForMage\WholesaleImport\Model\Source\Attribute"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="value" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="visible" xsi:type="boolean">true</item>
+                            <item name="source" xsi:type="string">value</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Value</label>
+                        <dataScope>value</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                    </settings>
+                </field>
+                <field name="position">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="componentType" xsi:type="string">field</item>
+                            <item name="label" xsi:type="string" translate="true">Position</item>
+                            <item name="dataScope" xsi:type="string">position</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.topnav" remove="false"/>
+      <!--  <referenceBlock name="store.menu">
+            <block class="Magento\Cms\Block\Block" name="main.menu" ttl="3600">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">menu</argument>
+                </arguments>
+            </block>
+        </referenceBlock> -->
+    </body>
+</page>

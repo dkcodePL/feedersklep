@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="ForMage::base" title="4mage" module="ForMage_Base" sortOrder="100" resource="ForMage_Base::base"/>
+    </menu>
+</config>

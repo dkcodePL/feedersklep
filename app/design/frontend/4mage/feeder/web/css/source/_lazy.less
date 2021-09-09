@@ -1,0 +1,10 @@
+& when (@media-common = true) {
+  img.lazy[src=""] {
+    .transition(opacity 500ms ease-in-out);
+    max-width: 100%;
+    opacity: 0;
+  }
+  img.lazy:not([src=""]) {
+    opacity: 1;
+  }
+}

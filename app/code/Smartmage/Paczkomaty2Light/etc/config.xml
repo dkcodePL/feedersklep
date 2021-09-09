@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <smpaczkomaty2>
+                <active>0</active>
+                <title>Dostawa do paczkomatu</title>
+                <name>Paczkomaty</name>
+                <model>Smartmage\Paczkomaty2Light\Model\Carrier\Paczkomaty</model>
+                <price>0</price>
+                <name_cod>Paczkomaty (płatność przy odbiorze)</name_cod>
+                <cod_active>1</cod_active>
+                <price_cod>0</price_cod>
+                <cod_warning>Wybrałeś płatność przy odbiorze w paczkomacie. Podczas wyboru paczkomatu lub placówki upewnij się że obsługuje ona płatności kartą klikając w "Szczegóły" po wybraniu punktu na mapie.</cod_warning>
+                <popenabled>1</popenabled>
+                <sallowspecific>1</sallowspecific>
+                <specificcountry>PL</specificcountry>
+                <cod_methods>cashondelivery</cod_methods>
+            </smpaczkomaty2>
+        </carriers>
+        <shipping>
+            <smpaczkomaty2>
+                <allow_on_error>1</allow_on_error>
+            </smpaczkomaty2>
+        </shipping>
+    </default>
+</config>

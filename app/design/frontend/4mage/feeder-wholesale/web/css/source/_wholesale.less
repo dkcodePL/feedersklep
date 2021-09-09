@@ -1,0 +1,65 @@
+.mega-menu li.level0 > .level-top {
+  color: @color-white;
+}
+.header-info-right .phone {
+  color: @color-white;
+}
+.page-footer .footer .address-block .item.content.social i {
+  color: @color-white;
+}
+
+.qty-box {
+  .flex-display();
+  .flex(5);
+  .align-items(center);
+  text-align: center;
+  background-color: @color-grey15;
+
+  input {
+    width: 60%;
+    .flex-order(2);
+    background-color: @color-grey15;
+    text-align: center;
+    border: none;
+  }
+
+  .ui-spinner-up {
+    width: 20%;
+    .flex-order(3);
+  }
+
+  .ui-spinner-down {
+    width: 20%;
+    .flex-order(1);
+  }
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+&.stripe tbody,
+&.display tbody {
+  tr.odd {
+    .qty-box {
+      background: @color-white;
+      input {
+        background: @color-white;
+      }
+    }
+  }
+}
+
+.home-page-info {
+  margin-bottom: 5.5rem;
+  h2, h3 {
+    color: @color-black;
+  }
+}
+
+.checkout-index-index {
+  div[name="shippingAddress.region_id"],
+  div[name="shippingAddress.region"]{
+    display: none;
+  }
+}

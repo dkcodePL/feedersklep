@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CatalogImportExport\Model\Import\Product\CategoryProcessor" type="ForMage\WholesaleImport\Model\Import\Product\CategoryProcessor" />
+    <type name="Magento\Framework\MessageQueue\MergerFactory">
+        <arguments>
+            <argument name="mergers" xsi:type="array">
+                <item name="import.wholesale" xsi:type="string">ForMage\WholesaleImport\Model\Merger</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="wholesaleimport_wholesale_listing_data_source" xsi:type="string">ForMage\WholesaleImport\Model\ResourceModel\Wholesale\Grid\Collection</item>
+                <item name="wholesaleimport_task_listing_data_source" xsi:type="string">ForMage\WholesaleImport\Model\ResourceModel\Task\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="ForMage\WholesaleImport\Model\ResourceModel\Wholesale\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">4mage_wholesaleimport_wholesale</argument>
+            <argument name="eventPrefix" xsi:type="string">4mage_wholesaleimport_wholesale_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">4mage_wholesaleimport_wholesale_collection</argument>
+            <argument name="resourceModel" xsi:type="string">ForMage\WholesaleImport\Model\ResourceModel\Wholesale</argument>
+        </arguments>
+    </type>
+    <virtualType name="WholesaleImportGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="WholesaleImportGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="object" shared="false">ForMage\WholesaleImport\Model\ResourceModel\Wholesale\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">WholesaleImportGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="ForMage\WholesaleImport\Model\ResourceModel\Task\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">4mage_wholesaleimport_task</argument>
+            <argument name="eventPrefix" xsi:type="string">4mage_wholesaleimport_task_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">4mage_wholesaleimport_task_collection</argument>
+            <argument name="resourceModel" xsi:type="string">ForMage\WholesaleImport\Model\ResourceModel\Task</argument>
+        </arguments>
+    </type>
+    <virtualType name="WholesaleImportTaskGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="WholesaleImportTaskGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="object" shared="false">ForMage\WholesaleImport\Model\ResourceModel\Task\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">WholesaleImportTaskGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="WholesaleFileUpload" type="ForMage\Base\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">tmp/wholesale</argument>
+            <argument name="basePath" xsi:type="string">wholesale</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="csv" xsi:type="string">csv</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="ForMage\WholesaleImport\Model\Wholesale">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">WholesaleFileUpload</argument>
+        </arguments>
+    </type>
+</config>

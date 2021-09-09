@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @copyright Copyright (c) 2018 - 2019 adam@intw.pl
+  -->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="formage_menu" class="ForMage\MegaMenu\Block\Widget\Menu" is_email_compatible="false" ttl="0">
+        <label translate="true">Menu</label>
+        <description translate="true">Menu</description>
+        <parameters>
+            <parameter name="menu_id" xsi:type="select" visible="true" source_model="ForMage\MegaMenu\Model\Config\Source\Menu">
+                <label translate="true">Menu</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/menu.phtml" selected="true">
+                        <label translate="true">Mega Menu</label>
+                    </option>
+                    <option name="tabs2" value="widget/side_menu.phtml" selected="true">
+                        <label translate="true">Side Menu</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="grid" value="default" />
+            </container>
+            <container name="content.top">
+                <template name="grid" value="default" />
+            </container>
+            <container name="content.bottom">
+                <template name="grid" value="default" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

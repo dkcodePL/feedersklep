@@ -1,0 +1,59 @@
+<?php $_category = $block->getCategory(); ?>
+<div id="<?= /* @escapeNotVerified */ $block->getElementId(); ?>" class="block block-products">
+    <div class="block-content slick-slider">
+        <?php if (!$block->getAjax()) : ?>
+            <?= /* @escapeNotVerified */ $block->getProducts($_category)->toHtml(); ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+        {
+            "#<?= /* @escapeNotVerified */ $block->getElementId(); ?> .block-content":
+            {
+                "productCarousel":
+                {
+                    "delay": true,
+                    "prevArrow": ".new-products .slick-prev",
+                    "nextArrow": ".new-products .slick-next",
+                    "category_id": "<?= /* @escapeNotVerified */ $_category->getId(); ?>",
+                    "children": "",
+                    "slick": {
+                        "infinite": false,
+                        "prevArrow": "<i class='icon-play3 slick-prev'></i>",
+                        "nextArrow": "<i class='icon-play slick-next'></i>",
+                        "responsive": [
+                        {
+                                "breakpoint": 1280,
+                                "settings": {
+                                    "slidesToShow": <?= /* @escapeNotVerified */ $block->getItems(); ?>,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ?/* @escapeNotVerified */ $block->getItems() : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 1024,
+                                "settings": {
+                                    "slidesToShow": 3,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 4 : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 640,
+                                "settings": {
+                                    "slidesToShow": 2,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 4 : 1; ?>
+                                }
+                            },
+                            {
+                                "breakpoint": 1,
+                                "settings": {
+                                    "slidesToShow": 1,
+                                    "slidesToScroll": <?= (bool)$block->getScroll() ? 1 : 1; ?>
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+</script>

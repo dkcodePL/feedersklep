@@ -1,0 +1,47 @@
+<?php
+$_brands = $block->getBrands();
+$_brandsByLetter = $block->getBrandsByFirstLetter($_brands);
+?>
+
+<div id="brands-logos">
+    <?php foreach ($_brands as $brand): ?>
+        <?php if ($swatchImage = $block->getBrandImage($brand)) : ?>
+                <a href="<?= $escaper->escapeUrl($brand->getUrl()) ?>" title="<?= /* @escapeNotVerified */ $escaper->escapeHtml($brand->getName()) ?>">
+                    <img class="" src="<?= /* @escapeNotVerified */ $swatchImage ?>" alt="<?= /* @escapeNotVerified */ $escaper->escapeHtml($brand->getName()) ?>">
+                </a>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+
+<div id="letters">
+    <?php foreach (array_keys($_brandsByLetter) as $letter): ?>
+    <div>
+        <a class="letter" href="#letter-<?= /* @escapeNotVerified */ $escaper->escapeHtml($letter) ?>"><?= /* @escapeNotVerified */ $escaper->escapeHtml($letter) ?></a>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+
+
+<div id="brands-overview">
+<?php foreach ($_brandsByLetter as $letter => $brands): ?>
+    <div class="row" id="letter-<?= /* @escapeNotVerified */ $escaper->escapeHtml($letter) ?>">
+
+        <div class="col-md-3">
+            <p><?= /* @escapeNotVerified */ $escaper->escapeHtml($letter) ?></p>
+        </div>
+
+        <div class="col-md-9">
+            <?php foreach ($brands as $brand): ?>
+                <a href="<?= $escaper->escapeUrl($brand->getUrl()) ?>">
+                    <?= /* @escapeNotVerified */ $escaper->escapeHtml($brand->getName()) ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+
+
+    </div>
+
+<?php endforeach; ?>
+</div>
+

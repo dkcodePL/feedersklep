@@ -1,0 +1,120 @@
+<?php
+$_helper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+$products = $block->getProducts();
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+?>
+
+<style>
+    .porto-block-html-top, .page-header, .loading-mask, .fb-customerchat {
+        display: none;
+    }
+    body {
+
+    }
+    .page-main {
+        max-width: none !important;
+        padding: 0;
+    }
+    .page-title-wrapper,
+    .modals-wrapper{
+        display: none;
+    }
+
+    .item {
+        width: 65mm;
+        height: 40mm;
+        border: 1px solid #000;
+        margin: 2px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .break {
+        page-break-after: always;
+    }
+
+    img {
+        width: 85px;
+    }
+
+    .top {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .name {
+        font-weight: bold;
+        text-align: right;
+        display: flex;
+        padding-right: 5px;
+        height: 85px;
+        align-self: center;
+    }
+
+    .price {
+        font-size: 22px;
+        background: steelblue;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(70, 130, 180, 1) 0%, rgba(183, 200, 215, 1) 100%);
+        padding: 10px 20px;
+        margin-left: 2px;
+        margin-right: 2px;
+        margin-bottom: 10px;
+
+    }
+
+    .price span {
+        float: right;
+    }
+
+    .noprint {
+        clear: both;
+        text-align: right;
+    }
+
+    @media print {
+        .noprint {
+            display: none;
+        }
+    }
+
+</style>
+
+<?php $counter = 1?>
+<?php foreach ($products as $product): ?>
+
+<?php
+$tax = $block->getProductTaxRate($product);
+$price = $product->getPrice() + ($product->getPrice()* ($tax/100));
+
+$fontSize = strlen($product->getName()) > 54 ? '15px' : '16px';
+$fontSize = strlen($product->getName()) > 65 ? '14px' : $fontSize;
+
+?>
+
+    <div class="item">
+        <div class="top">
+            <div class="qr">
+                <img src="<?= $block->getQrCodeUrl($product) ?>"/>
+            </div>
+            <div class="name" style="font-size: <?= $fontSize ?>;">
+                <?= $product->getName() ?>
+            </div>
+        </div>
+        <div class="price">
+            CENA:<span><?= $_helper->currency($price, true, false) ?></span>
+        </div>
+    </div>
+
+    <?php $counter++?>
+
+<?php endforeach; ?>
+
+
+<div class="noprint">
+
+    <?= $page . '/' .  ceil($products->getSize()/20) . ': ' . $products->getSize() ?>
+</div>

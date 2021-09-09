@@ -1,0 +1,33 @@
+<ul id="brands" class="slick-slider">
+    <i class='icon-play3 slick-prev'></i>
+<?php foreach ($block->getBrands() as $brand): ?>
+    <?php if ($swatchImage = $block->getBrandImage($brand)) : ?>
+    <li class="slick-slide">
+        <a href="<?= $escaper->escapeUrl($brand->getUrl()) ?>" title="<?= /* @escapeNotVerified */ $escaper->escapeHtml($brand->getName()) ?>">
+            <img width="180" height="60" class="lazy" data-src="<?= /* @escapeNotVerified */ $swatchImage ?>" alt="<?= /* @escapeNotVerified */ $escaper->escapeHtml($brand->getName()) ?>">
+        </a>
+    </li>
+    <?php endif; ?>
+<?php endforeach; ?>
+    <i class='icon-play slick-next'></i>
+</ul>
+
+
+<script type="text/x-magento-init">
+        {
+            "#brands":
+            {
+                "slickCarousel":
+                {
+                    "delay": true,
+                    "prevArrow": ".brands .slick-prev",
+                    "nextArrow": ".brands .slick-next",
+                    "slick":
+                    {
+                        "prevArrow": "<i class='icon-play3 slick-prev'></i>",
+                        "nextArrow": "<i class='icon-play slick-next'></i>"
+                    }
+                }
+            }
+        }
+</script>

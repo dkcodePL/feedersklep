@@ -1,0 +1,44 @@
+/** All **/
+& when (@media-common = true) {
+  .opc-progress-bar {
+    margin: 50px 0 20px;
+  }
+
+  body.checkout-index-index {
+    .smile-store-delivery {
+      .contextual-bar {
+        .search-result-list {
+          .search-result-header {
+            height: auto !important;
+            display: none !important;
+          }
+          .store-locator-display-wrapper {
+            display: none !important;
+          }
+        }
+        .shop-search {
+          .fulltext-search-wrapper {
+            height: auto !important;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+
+}

@@ -1,0 +1,139 @@
+/** All **/
+& when (@media-common = true) {
+  .filter {
+    &-options {
+      &-item {
+        background: @color-grey11;
+        border: 0;
+        padding-bottom: 0;
+      }
+
+      &-title {
+        font-size: 1.2rem;
+        font-weight: @font-weight__light;
+        text-transform: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .filter-current {
+      border: none;
+
+      &-subtitle {
+        &:before {
+          content: '';
+        }
+      }
+
+      & + .block-actions {
+        .filter-clear {
+          background: @color-black;
+          color: @color-white;
+          padding: 5px 10px;
+          .border-radius(5px);
+          font-weight: @font-weight__bold;
+        }
+      }
+
+      .action.remove {
+        background: @color-yellow01;
+        .border-radius(50%);
+        width: 20px;
+        height: 20px;
+
+        &:before {
+          font-size: 20px;
+          line-height: 22px;
+        }
+      }
+
+    }
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+  .filter {
+    &-actions {
+      margin: -10px 0px 25px;
+    }
+
+    &-options-content {
+      padding: 5px 40px;
+
+      a {
+        padding: 7px;
+      }
+    }
+  }
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .filter {
+    &-actions {
+      margin: 0;
+    }
+
+    &-options {
+      &-item {
+        float: left;
+      }
+
+      &-content {
+        width: 250px !important;
+      }
+    }
+
+    .filter-current {
+      border: none;
+
+      &-subtitle {
+        &:before {
+          content: '';
+        }
+      }
+
+      & + .block-actions {
+        display: block !important;
+        float: right;
+      }
+
+      .action.remove {
+        left: -5px;
+        top: -2px;
+      }
+
+    }
+  }
+
+  .page-layout-1column {
+    .filter {
+      &.block {
+        border: none;
+      }
+
+      &-options {
+        &-item {
+          margin-right: 2px;
+        }
+
+        &-title {
+          padding: 1rem 2rem 1rem 1rem;
+        }
+      }
+    }
+  }
+
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+
+}

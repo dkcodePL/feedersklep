@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.product.addto.wishlist" remove="true"/>
+
+        <referenceContainer name="page.main.title">
+            <container htmlTag="div" htmlClass="category-banner" before="-">
+                <block class="Magento\Cms\Block\Block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">category_banner</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="category.product.addto">
+            <block class="Magento\Catalog\Block\Product\ProductList\Item\Block" name="product.info.labels" template="Magento_Catalog::product/view/labels.phtml" after="-"/>
+        </referenceBlock>
+
+        <referenceBlock name="authentication-popup">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="authenticationPopup" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="recaptcha" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

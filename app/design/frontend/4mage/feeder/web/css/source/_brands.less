@@ -1,0 +1,85 @@
+/** All **/
+& when (@media-common = true) {
+  #brands-logos {
+    padding-bottom: 4rem;
+    .flex-display();
+    .flex-wrap(wrap);
+    a {
+      .flex-display();
+      position: relative;
+      width: ~"calc(10% - 2*.5rem)";
+      height: 7rem;
+      margin: .5rem;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, .27);
+
+      img {
+        width: auto;
+        position: absolute;
+        max-width: 90%;
+        max-height: 90%;
+        left: 50%;
+        top: 50%;
+        .transform(translate3d(-50%, -50%, 0));
+      }
+    }
+  }
+
+  #letters {
+    .flex-display();
+    .justify-content(center);
+    .flex-wrap(wrap);
+    padding: .5rem 0;
+    border-top: 1px solid @color-grey16;
+    border-bottom: 1px solid @color-grey16;
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    div {
+      display: block;
+
+      a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: #212121;
+      }
+    }
+  }
+
+  #brands-overview {
+
+    .row {
+      padding: 4rem 2rem;
+      border-bottom: 1px solid @color-grey16;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    p {
+      font-size: 11rem;
+    }
+
+    a {
+      width: 33.33%;
+      display: inline-block;
+      padding-bottom: .5rem;
+    }
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+
+}

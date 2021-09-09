@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="4Mage" translate="label" sortOrder="200" class="formage">
+            <label>4mage.co</label>
+        </tab>
+        <section id="ForMage" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Installed Extensions</label>
+            <tab>4Mage</tab>
+            <resource>ForMage_Base::config</resource>
+            <group id="extensions" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Extensions</label>
+                <field id="packages" translate="label" type="note" sortOrder="2" showInDefault="1">
+                    <frontend_model>ForMage\Base\Block\Adminhtml\Config\Field\Package</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="ForMage\FeederTheme\Model\Pdf\Order" type="Fooman\PrintOrderPdf\Model\Pdf\Order" />
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="paczkomat" xsi:type="string">sales_order.paczkomat</item>
+                <item name="tax_amount" xsi:type="string">sales_order.tax_amount</item>
+                <item name="shipping_tax_amount" xsi:type="string">sales_order.shipping_tax_amount</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Smile\ElasticsuiteCatalogRule\Model\Rule\Condition\Product\SpecialAttributesProvider">
+        <arguments>
+            <argument name="attributes" xsi:type="array">
+                <item name="is_product_new" xsi:type="object">ForMage\FeederTheme\Model\ElasticSuite\Rule\IsNew</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

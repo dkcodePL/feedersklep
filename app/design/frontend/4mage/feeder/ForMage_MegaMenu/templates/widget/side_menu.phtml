@@ -1,0 +1,30 @@
+<?php
+// @codingStandardsIgnoreFile
+
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $category = $block->getCurrentCategory(); ?>
+<?php $_menu = $block->getHtml('level-top', 'sub-menu', $columnsLimit) ?>
+<?php if ($category && $category->getId()):?>
+<nav id="side-nav" data-action="navigation">
+    <div class="side-category"><?= /* @escapeNotVerified */ $category->getName() ?></div>
+    <?php if ($category->hasChildren()): ?>
+    <ul id="side-menu" class="ui-menu">
+        <?= /* @escapeNotVerified */ $_menu ?>
+        <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+    </ul>
+    <?php endif; ?>
+</nav>
+
+<script>
+    require([
+        'jquery',
+        'jquery/ui',
+        'domReady!'
+    ], function ($) {
+        $( "#side-menu" ).menu({
+            position: { my: "left top"}
+        });
+    });
+</script>
+<?php endif; ?>

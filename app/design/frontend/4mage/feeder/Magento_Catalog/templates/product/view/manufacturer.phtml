@@ -1,0 +1,13 @@
+<?php $_product = $block->getProduct(); ?>
+<?php if ($_product && $_product->getManufacturer()): ?>
+    <?php $swatchImage = $block->getSwatchImage(); ?>
+    <div class="manufacturer">
+        <a href="<?= /* @escapeNotVerified */ $block->getSearchLink() ?>">
+    <?php if ($swatchImage): ?>
+            <img class="" src="<?= /* @escapeNotVerified */ $swatchImage ?>" alt="<?= /* @escapeNotVerified */ $block->escapeHtml( $_product->getAttributeText('manufacturer')) ?>">
+        <?php else: ?>
+        <?= /* @escapeNotVerified */ $block->escapeHtml( $_product->getAttributeText('manufacturer')) ?>
+    <?php endif; ?>
+        </a>
+    </div>
+<?php endif; ?>

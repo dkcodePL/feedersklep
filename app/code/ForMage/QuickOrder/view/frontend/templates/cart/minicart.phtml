@@ -1,0 +1,52 @@
+<?php
+/*
+ *  4mage Package
+ *
+ *  NOTICE OF LICENSE
+ *
+ *  This source file is subject to the 4mage.co license that is
+ *  available through the world-wide-web at this URL:
+ *  https://4mage.co/license-agreement/
+ *
+ *  DISCLAIMER
+ *
+ *  Do not edit or add to this file if you wish to upgrade this extension to newer
+ *  version in the future.
+ *
+ *  @category 	ForMage
+ *  @package 	ForMage_QuickOrder
+ *  @copyright 	Copyright (c) 2020 4mage.co (https://4mage.co/)
+ *  @license  	https://4mage.co/license-agreement/
+ *
+ */
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<div data-block="minicart2" class="minicart-wrapper">
+    <?php if ($block->getIsNeedToDisplaySideBar()):?>
+        <div class="block block-minicart">
+
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <?= $block->getChildHtml('minicart.addons') ?>
+        </div>
+    <?php else: ?>
+    <?php endif ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], 'window.checkout = ' .
+     /* @noEscape */ $block->getSerializedConfig(), false); ?>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart2']": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?= $block->escapeJs(
+                $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif'))
+            ) ?>"
+        }
+    }
+    </script>
+</div>

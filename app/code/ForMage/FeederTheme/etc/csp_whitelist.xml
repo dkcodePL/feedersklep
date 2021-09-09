@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="style-src">
+            <values>
+                <value id="przelewy24" type="host">*.przelewy24.pl</value>
+                <value id="easypack24_1" type="host">*.easypack24.net</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="google1" type="host">*.google.com</value>
+                <value id="doubleclick" type="host">googleads.g.doubleclick.net</value>
+                <value id="easypack24_2" type="host">*.easypack24.net</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="easypack24_3" type="host">*.easypack24.net</value>
+                <value id="inpost" type="host">*.inpost.pl</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="google2" type="host">*.google.com</value>
+                <value id="freshmail" type="host">*.freshmail.io</value>
+                <value id="easypack24_4" type="host">*.easypack24.net</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="google3" type="host">google.pl</value>
+                <value id="google4" type="host">*.google.com</value>
+                <value id="easypack24_5" type="host">*.easypack24.net</value>
+                <value id="inpost_2" type="host">*.inpost.pl</value>
+                <value id="openstreetmap" type="host">*.tile.openstreetmap.org</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="easypack24_6" type="host">*.easypack24.net</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
+

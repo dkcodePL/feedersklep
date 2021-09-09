@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="import.wholesale" request="Magento\AsynchronousOperations\Api\Data\OperationInterface">
+        <handler name="import.wholesale" type="ForMage\WholesaleImport\Model\Consumer\Import" method="processOperation" />
+    </topic>
+</config>

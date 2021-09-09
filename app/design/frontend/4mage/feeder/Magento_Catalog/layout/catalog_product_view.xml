@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="view.addto.wishlist" remove="true"/>
+        <referenceBlock name="related.product.addto.wishlist" remove="true"/>
+        <referenceBlock name="upsell.product.addto.wishlist" remove="true"/>
+        <referenceBlock name="product.info.overview" remove="true"/>
+
+        <move element="page.main.title" destination="product.info.main" after="product-info"/>
+        <move element="product.info.review" destination="product-info-right" before="-"/>
+        <move element="product.info.overview" destination="product.info.main" after="page.main.title"/>
+        <move element="product.info.price" destination="product-info2-left" before="-"/>
+        <move element="product.info.type" destination="product-info2-left"/>
+        <move element="attributes" destination="product.info.main" after="product.info.price"/>
+        <move element="product.info" destination="product.info.main" after="attributes"/>
+        <move element="product.info.extrahint" destination="product.info.main" after="product.info"/>
+        <move element="product.info.stock.sku" destination="product.info.main" after="product-info2"/>
+
+        <referenceBlock name="product.info.addto">
+            <block class="Magento\Cms\Block\Block" name="product_question" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">product_question</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.ean" template="Magento_Catalog::product/view/attribute.phtml" before="product.info.sku">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getEan</argument>
+                    <argument name="at_code" xsi:type="string">ean</argument>
+                    <argument name="css_class" xsi:type="string">ean</argument>
+                    <argument name="at_label" xsi:type="string">default</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="ean"</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.main">
+            <container htmlTag="div" htmlClass="row no-gutters" before="-" name="product-info">
+                <container htmlTag="div" htmlClass="col-md-6 category" name="product-info-left">
+                    <block class="ForMage\FeederTheme\Block\Product\Manufacturer" name="product.info.category" template="Magento_Catalog::product/view/category.phtml"/>
+                </container>
+                <container htmlTag="div" htmlClass="col-md-6" name="product-info-right">
+
+                </container>
+            </container>
+            <container htmlTag="div" htmlClass="row no-gutters psm" after="product.info.overview" name="product-info2">
+                <container htmlTag="div" htmlClass="col-md-9" name="product-info2-left">
+
+                </container>
+                <container htmlTag="div" htmlClass="col-md-3" name="product-info2-right">
+                    <block class="ForMage\FeederTheme\Block\Product\Manufacturer" name="product.manufacturer" template="Magento_Catalog::product/view/manufacturer.phtml"/>
+                </container>
+            </container>
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes" as="attributes" template="Magento_Catalog::product/view/attributes.phtml" />
+        </referenceContainer>
+
+    </body>
+</page>
+

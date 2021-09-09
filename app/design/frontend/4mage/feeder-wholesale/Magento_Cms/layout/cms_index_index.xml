@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <move element="slider" destination="content" before="-"/>
+
+        <referenceContainer name="content">
+            <container htmlTag="div" htmlClass="row no-gutters">
+                <container htmlTag="div" htmlClass="col-lg-12 col-md-12 col-sm-12 home-page-info">
+                    <block class="Magento\Cms\Block\Block" name="main_page_info" after="slider">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">main_page_info</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

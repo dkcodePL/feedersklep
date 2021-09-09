@@ -1,0 +1,21 @@
+<style>
+    #row_ForMage_extensions_packages > td.label {
+        display: none;
+    }
+</style>
+<div style="margin:10px 0px 10px 0px">
+    <div style="padding-top:5px">
+        <?php foreach ($block->getPackages() as $package): ?>
+            <span style="font-weight: bold;"><?= $package->getName() ?></span> <span>(<?= $package->getVersion() ?>)</span>
+            <?php if ($package->getUrl()): ?>
+            <a href="<?= $package->getUrl() ?>"> <?= __('Read More') ?></a>
+            <?php endif; ?>
+            <br/>
+        <?php endforeach; ?>
+    </div>
+</div>
+<div style="margin:10px 0px 10px 0px">
+    <div style="padding-top:5px">
+        <h2><?= __("Check out our <a href='https://4mage.co/' target='_blank'>store</a> for more") ?></h2>
+    </div>
+</div>

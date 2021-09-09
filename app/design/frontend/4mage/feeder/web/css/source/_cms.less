@@ -1,0 +1,77 @@
+/** All **/
+& when (@media-common = true) {
+  .cms-list {
+    ul {
+      padding: 0 0 0 15px !important;
+    }
+
+    ol {
+      padding: 0 0 0 15px !important;
+
+      > li {
+        margin-top: 15px;
+        list-style: decimal;
+        font-weight: normal;
+      }
+
+      ol {
+        ol {
+          li {
+            list-style: lower-latin;
+            text-transform: none;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    li {
+      > ol {
+        padding: 0 0 0 40px !important;
+        font-weight: normal;
+      }
+    }
+
+    p {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+/** Mobile **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+/** Desktop **/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .cms-list {
+    overflow: hidden;
+    ol {
+      padding: 0 0 0 20px !important;
+      text-align: left;
+    }
+    ul {
+      padding: 0 0 0 10px !important;
+      text-align: left;
+    }
+    >ol {
+      >li {
+        margin-top: 15px;
+      }
+    }
+    li {
+      >ol {
+        padding: 0 0 0 10px !important;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+/** Desktop Large **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+
+}

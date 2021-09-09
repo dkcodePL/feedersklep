@@ -1,0 +1,15 @@
+{
+  "name": "4mage/m2-feeder-wholesale-theme",
+  "description": "N/A",
+  "license": "4mage",
+  "type": "magento2-theme",
+  "require": {
+    "magento/framework": "^101.0.0|^102.0.0"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ]
+  },
+  "version": "1.0.0"
+}
