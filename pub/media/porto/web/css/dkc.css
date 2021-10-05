@@ -662,3 +662,116 @@ button.action.primary:hover{
 	position: absolute;
 	background-color: #f4f4f4;
 }
+
+@media all and (max-width:  575px){
+  .layer-product-list .products.product-items{
+    grid-template-columns: repeat(2, 1fr);
+  }
+	#maincontent{
+		padding: 0 15px!important;
+	}
+	.fmForm{
+		padding-left: 20px!important;
+		padding-right: 20px!important;
+	}
+	.mega-menu li.level0.menu-promo>.level-top:before,
+	.mega-menu li.level0.menu-raty>.level-top:before,
+	.mega-menu li.level0.menu-hurt>.level-top:before{
+    position: absolute;
+    left: 9px;
+    margin-top: -2px;
+	}
+}
+@media all and (min-width: 768px){
+  .opc-sidebar {
+    width: 40%!important;
+  }
+  .opc-wrapper{
+    width: 60%!important;
+  }
+  .opc-wrapper .form-login, .opc-wrapper .form-shipping-address{
+    max-width: 100%!important;
+  }
+  .table-checkout-shipping-method{
+    min-width: 100%!important;
+  }
+}
+
+.cart.item .product-item-details .product-item-name a,
+.product-item-details .product-item-name{
+  white-space: normal!important;
+}
+.smile-es-range-slider .action.primary.small{
+	color: #fff!important;
+}
+.mega-menu li.level0.menu-promo>.level-top:before,
+.mega-menu li.level0.menu-raty>.level-top:before,
+.mega-menu li.level0.menu-hurt>.level-top:before{
+  font-family: 'Raleway';
+  font-weight: 700;
+  color: #fff;
+  margin-right: 1.5rem;
+  background: #000;
+  font-size: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mega-menu li.level0.menu-promo>.level-top:before{
+  content: 'P';
+}
+
+.mega-menu li.level0.menu-raty>.level-top:before{
+  content: 'R';
+}
+
+.mega-menu li.level0.menu-hurt>.level-top:before{
+  content: 'H';
+}
+
+#layer-product-list .products.wrapper.grid.products-grid ol{
+  display: flex;
+  flex-wrap: wrap;
+}
+#layer-product-list .products.wrapper.grid.products-grid .products.product-items .item.product.product-item{
+  width: 25%!important;
+}
+
+@media all and (max-width:  767px){
+  #layer-product-list .products.wrapper.grid.products-grid .products.product-items .item.product.product-item{
+    width: 50%!important;
+  }
+}
+
+.cms-home a.product-item-link,
+.cms-home .price-box{
+  text-align: center;
+}
+.cms-home .product-item form[data-role="tocart-form"]{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+.cms-home .product-item form[data-role="tocart-form"] .qty-box{
+  margin-bottom: 7px;
+}
+
+.page-products .product-item .product-item-actions{
+    white-space: initial!important;
+}
+
+.page-products .product-item .product-item-actions .actions-secondary{
+    display: none;
+}
+
+.page-products .product-item .product-item-actions button[type="submit"]{
+  margin-bottom: 7px;
+}
