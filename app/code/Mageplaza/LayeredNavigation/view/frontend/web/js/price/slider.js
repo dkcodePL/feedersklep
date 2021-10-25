@@ -23,6 +23,7 @@ define([
                 values: [self.options.selectedFrom, self.options.selectedTo],
                 slide: function( event, ui ) {
                     self.displayText(ui.values[0], ui.values[1]);
+                    console.log(ui);
                 },
                 change: function(event, ui) {
                     self.ajaxSubmit(self.getUrl(ui.values[0], ui.values[1]));

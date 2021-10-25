@@ -70,7 +70,7 @@ $_inscroll = $_portohelper->getConfig('layered_navigation/general/infinite_scrol
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
                 <?php echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
-                <div class="product-item-info type<?php echo $product_type; ?>" data-container="product-grid">
+                <div class="product-item-info test2 type<?php echo $product_type; ?>" data-container="product-grid">
                     <?php // Product Image ?>
                     <div class="product photo product-item-photo">
                         <a href="<?php echo $_product->getProductUrl() ?>" tabindex="-1">

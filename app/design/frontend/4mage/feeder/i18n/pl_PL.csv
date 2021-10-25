@@ -1,8 +1,11 @@
-My Cart,Koszyk
-View Cart,Pokaż koszyk
-products,produkty
-Add to Cart,Do koszyka
-Now Shopping by,Zastosowane filtry
+"The requested qty is not available","Wybrana ilość jest niedostępna"
+"The requested qty exceeds the maximum qty allowed in shopping cart","Wybrana ilość przekracza maksymalną ilość dozwoloną w koszyku"
+"Tax/VAT Number","Numer NIP"
+"My Cart","Koszyk2"
+"View Cart","Pokaż koszyk"
+"products","produkty"
+"Add to Cart","Do koszyka"
+"Now Shopping by","Zastosowane filtry"
 "Find a store ...","Szukaj sklepu ..."
 "My store : %s","Mój sklep : %s"
 "Store Delivery Addresses","Dostawa do sklepów"

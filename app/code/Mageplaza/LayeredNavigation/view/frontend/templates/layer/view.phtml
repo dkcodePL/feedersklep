@@ -58,6 +58,7 @@ if ($block->canShowBlock()) : ?>
                     endif; ?>
                     <div data-role="ln_collapsible" class="filter-options-item"
                          attribute="<?= /** @noEscape */ $filter->getRequestVar() ?>">
+                         <!-- tu już próbowaliśmy -->
                         <div data-role="ln_title" class="filter-options-title">
                             <?= /** @noEscape */ __($filter->getName()) ?>
                             <?php if ($filter->hasAttributeModel()

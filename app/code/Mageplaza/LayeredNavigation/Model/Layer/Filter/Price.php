@@ -139,8 +139,8 @@ class Price extends AbstractFilter
         list($from, $to) = $this->_filterVal = $filter;
 
         $this->getLayer()->getProductCollection()->addFieldToFilter('price', [
-            'from' => $from / $this->getCurrencyRate(),
-            'to'   => $to / $this->getCurrencyRate()
+            'gte' => $from / $this->getCurrencyRate(),
+            'lt'   => $to / $this->getCurrencyRate()
         ]);
 
         $this->getLayer()->getState()->addFilter(
